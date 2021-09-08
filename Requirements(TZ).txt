@@ -1,0 +1,26 @@
+- 64 storage cells in length
+- 64 storage cells in height
+- 64 storage cells in width
+
+1. Store package
+1) input info about a package
+2) validate the package
+3) check mass existance in all the storage cells
+3.1) take money (prepayment)
+4) build a path for shuttle to appropriate storage cell
+5) show as shuttle goes with a red mark
+(если робот опустился то и вверх камеры тоже опускается вместе с ним, показывая какие там есть стореджи)
+6) when shuttle finds the needed cell, it pushes a package there
+7) using the same route (or build another one) to the initial position
+8) add package to the package-storing history (as stored)
+
+2. Unstore package
+1) input a package 4 last internation number (e.g 4490, the whole looks like: XXXXXXXXXXA)
+2) validate the number
+3) get the whole package from database
+4) take the position of cell and build path there
+5) take the package
+6) go to the initial position by some path
+7) update package to the package-spoting history (as taken)
+
+3. 
