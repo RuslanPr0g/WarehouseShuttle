@@ -15,9 +15,11 @@ namespace WarehouseShuttle
     public partial class MainFormScreen : Form
     {
         private readonly IStoreRepository _storeRepository;
-        private List<StorageCell> _storageCells;
+        private readonly List<StorageCell> _storageCells;
         private const int MOCK_MAX_NUMBER_OF_STORAGE_CELLS = 200;
         private const int MAX_NUMBER_OF_STORAGE_CELLS = 262144;
+
+        private static readonly Random rndSeed = new Random();
 
         public MainFormScreen(IStoreRepository storeRepository)
         {
@@ -60,7 +62,13 @@ namespace WarehouseShuttle
             // - using the same route(or build another one) go to the initial position
 
             int nextPackageNumber = _storeRepository.LastPackageNumber() + 1;
-            int storageCellNumber = _storageCells.SingleOrDefault(cell => cell.HasPackage is false).Number;
+            int? storageCellNumber = _storageCells.FirstOrDefault(cell => cell.HasPackage is false).Number;
+            if (!storageCellNumber.HasValue)
+            {
+                MessageBox.Show("No available storage cells left!");
+                return;
+            }
+
             string PIN = GeneratePIN();
             string password = GeneratePassword();
             string hashedPassword = HashPassword(password);
@@ -68,7 +76,7 @@ namespace WarehouseShuttle
             var packageToStore = new Package()
             {
                 Number = nextPackageNumber,
-                StorageCellNumber = storageCellNumber,
+                StorageCellNumber = storageCellNumber.Value,
                 PackageInternationalNumber = PIN,
                 Mass = packageReadDto.Mass,
                 Owner = packageReadDto.Owner,
@@ -79,25 +87,88 @@ namespace WarehouseShuttle
                 SoftDeleted = false
             };
 
+            var indexToStore = _storageCells.FindIndex(p => p.Number == storageCellNumber.Value);
+            _storageCells[indexToStore].HasPackage = true;
+
             _storeRepository.StorePackageToDB(packageToStore);
 
-            MessageBox.Show($"Your password: {password}, please, keep it in a safe place.");
+            MessageBox.Show($"Your password: \"{password}\", please, keep it in a safe place.");
+            ClearAllInputsInGroup(StorePackage);
         }
 
         private void UnstorePackageButton_Click(object sender, EventArgs e)
         {
-            //1) input a package 4 last internation number(e.g 4490, the whole looks like: XXXXXXXXXX)
-            //2) validate the number
-            //3) get the whole package from database
-            //4) take the position of cell and build path there
-            //5) take the package
-            //6) go to the initial position by some path
-            //7) update package to the package - spoting history(as taken)
+            var (readUnPackageDto, responseMessage) = GetUnPackageFromUIFormInput();
+
+            if (readUnPackageDto is null)
+            {
+                MessageBox.Show(responseMessage);
+                return;
+            }
+
+            var package = _storeRepository.GetPackageByPartOfPINAndOwner(readUnPackageDto.PackageInternationalNumber, readUnPackageDto.Owner);
+
+            if (package is null)
+            {
+                MessageBox.Show("We don't have such a package!");
+                return;
+            }
+
+            if (!VerityPassword(readUnPackageDto.Password, package.Password))
+            {
+                MessageBox.Show("The entered password doesn't match the stored one!");
+                return;
+            }
+
+            // - take the position of cell and build path there
+            // - take the package
+            // - go to the initial position by some path
+
+            var indexToUnStore = _storageCells.FindIndex(p => p.Number == package.StorageCellNumber);
+            _storageCells[indexToUnStore].HasPackage = false;
+
+            _storeRepository.UnStorePackageInDB(package.Number);
+
+            StringBuilder info = new StringBuilder("Here is your package: \n");
+
+            info.AppendLine($"Number: {package.Number}");
+            info.AppendLine($"StorageCellNumber: {package.StorageCellNumber}");
+            info.AppendLine($"PackageInternationalNumber: {package.PackageInternationalNumber}");
+            info.AppendLine($"Mass: {package.Mass}");
+            info.AppendLine($"Owner: {package.Owner}");
+            info.AppendLine($"StartDate: {package.StartDate}");
+            info.AppendLine($"EndDate: {package.EndDate}");
+            info.AppendLine($"Price: {package.Price}");
+
+            MessageBox.Show(info.ToString());
+            ClearAllInputsInGroup(UnStoreGroup);
+        }
+
+        private void ShowPackagesButton_Click(object sender, EventArgs e)
+        {
+            StringBuilder info = new StringBuilder();
+
+            var packages = _storeRepository.GetActualPackages();
+
+            foreach (var package in packages)
+            {
+                info.AppendLine($"Number: {package.Number}");
+                info.AppendLine($"StorageCellNumber: {package.StorageCellNumber}");
+                info.AppendLine($"PackageInternationalNumber: {package.PackageInternationalNumber}");
+                info.AppendLine($"Mass: {package.Mass}");
+                info.AppendLine($"Owner: {package.Owner}");
+                info.AppendLine($"StartDate: {package.StartDate}");
+                info.AppendLine($"EndDate: {package.EndDate}");
+                info.AppendLine($"Price: {package.Price}");
+                info.AppendLine();
+            }
+
+            MessageBox.Show(info.ToString());
         }
 
         #region Private methods
 
-        private (PackageReadDto, string) GetPackageFromUIFormInput()
+        private (StorePackageReadDto, string) GetPackageFromUIFormInput()
         {
             bool massValid = decimal.TryParse(MassInput.Text, out decimal mass);
             bool priceValid = decimal.TryParse(PriceInput.Text, out decimal price);
@@ -123,7 +194,7 @@ namespace WarehouseShuttle
             if (mass > GlobalVariables.MaxMassAvailableInKG)
                 return (null, "The package is too heavy for our storage.");
 
-            return (new PackageReadDto()
+            return (new StorePackageReadDto()
             {
                 Mass = mass,
                 Owner = owner,
@@ -133,11 +204,45 @@ namespace WarehouseShuttle
             }, "Success");
         }
 
+        private (UnStorePackageReadDto, string) GetUnPackageFromUIFormInput()
+        {
+            string PIN = UnStorePinInput.Text;
+            string owner = UnstoreOwnerInput.Text;
+            string password = UnStorePasswordInput.Text;
+
+            if (PIN == string.Empty)
+                return (null, "PIN is not valid.");
+
+            if (owner == string.Empty)
+                return (null, "Owner is not valid.");
+
+            if (password == string.Empty)
+                return (null, "Password is not valid.");
+
+            return (new UnStorePackageReadDto()
+            {
+                PackageInternationalNumber = PIN,
+                Owner = owner,
+                Password = password
+            }, "Success");
+        }
+
+        private void ClearAllInputsInGroup(GroupBox groupBox)
+        {
+            foreach (var control in groupBox.Controls)
+            {
+                if (control is TextBox textBox)
+                {
+                    textBox.Clear();
+                }
+            }
+        }
+
         private string GeneratePIN()
         {
             StringBuilder PIN = new StringBuilder();
             int pinLength = 10;
-            var rnd = new Random(666);
+            var rnd = new Random(rndSeed.Next(199, 99999));
 
             for (int i = 0; i < pinLength; i++)
             {

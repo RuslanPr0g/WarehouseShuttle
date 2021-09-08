@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using WarehouseShuttle.Models;
 
 namespace WarehouseShuttle.Infrastructure
@@ -7,7 +8,7 @@ namespace WarehouseShuttle.Infrastructure
     {
         #region Tables
 
-        private List<Package> Packages;
+        private readonly List<Package> Packages;
 
         #endregion
 
@@ -23,32 +24,40 @@ namespace WarehouseShuttle.Infrastructure
 
         public Package GetPackageByNumber(int number)
         {
-            throw new System.NotImplementedException();
+            return Packages.FirstOrDefault(p => p.Number == number && p.SoftDeleted is false);
         }
 
-        public Package GetPackageByPINAndOwner(string PIN, string owner)
+        public Package GetPackageByPartOfPINAndOwner(string partOfPIN, string owner)
         {
-            throw new System.NotImplementedException();
+            return Packages.FirstOrDefault(p =>
+            p.PackageInternationalNumber.EndsWith(partOfPIN) && p.Owner == owner && p.SoftDeleted is false);
         }
 
-        public List<Package> GetPackages()
+        public List<Package> GetActualPackages()
         {
-            throw new System.NotImplementedException();
+            return Packages.Where(p => p.SoftDeleted is false).ToList();
+        }
+
+        public List<Package> GetAllPackages()
+        {
+            return Packages;
         }
 
         public int StorePackageToDB(Package package)
         {
-            throw new System.NotImplementedException();
+            Packages.Add(package);
+            return package.Number;
         }
 
         public void UnStorePackageInDB(int packageNumber)
         {
-            throw new System.NotImplementedException();
+            var indexToUnStore = Packages.FindIndex(p => p.Number == packageNumber);
+            Packages[indexToUnStore].SoftDeleted = true;
         }
 
         public bool IsThereAPackageInStorageCell(int storageCellNumber)
         {
-            return false;
+            return Packages.Exists(p => p.StorageCellNumber == storageCellNumber && p.SoftDeleted is false);
         }
 
         public int LastPackageNumber()

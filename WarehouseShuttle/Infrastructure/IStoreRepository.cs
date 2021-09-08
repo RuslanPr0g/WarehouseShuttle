@@ -20,10 +20,16 @@ namespace WarehouseShuttle.Infrastructure
         void UnStorePackageInDB(int packageNumber);
 
         /// <summary>
-        /// Get all the packages
+        /// Gets the packages which are not softly deleted
         /// </summary>
         /// <returns>List of <see cref="Package"/></returns>
-        List<Package> GetPackages();
+        List<Package> GetActualPackages();
+
+        /// <summary>
+        /// Gets all the packages
+        /// </summary>
+        /// <returns>List of <see cref="Package"/></returns>
+        List<Package> GetAllPackages();
 
         /// <summary>
         /// Gets the last package's number
@@ -39,12 +45,12 @@ namespace WarehouseShuttle.Infrastructure
         Package GetPackageByNumber(int number);
 
         /// <summary>
-        /// Gets a package by PIN and owner
+        /// Gets a package by part of PIN (e.g last 4 digits) and owner
         /// </summary>
-        /// <param name="PIN">Package international number</param>
+        /// <param name="partOfPIN">Package international number</param>
         /// <param name="owner">Owner of package</param>
         /// <returns><see cref="Package"/></returns>
-        Package GetPackageByPINAndOwner(string PIN, string owner);
+        Package GetPackageByPartOfPINAndOwner(string partOfPIN, string owner);
 
         /// <summary>
         /// Is there a package in a storage cell

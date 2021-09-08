@@ -2,7 +2,7 @@
 
 namespace WarehouseShuttle.Models.DTO
 {
-    public class PackageReadDto
+    public class StorePackageReadDto
     {
         public decimal Mass { get; set; }
         public string Owner { get; set; }

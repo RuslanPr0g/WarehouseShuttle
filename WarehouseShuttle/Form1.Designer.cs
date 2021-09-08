@@ -42,16 +42,17 @@ namespace WarehouseShuttle
             this.OwnerText = new System.Windows.Forms.Label();
             this.MassInput = new System.Windows.Forms.TextBox();
             this.MassText = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.UnStoreGroup = new System.Windows.Forms.GroupBox();
+            this.UnStorePasswordInput = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.UnstoreOwnerInput = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.UnstorePackage = new System.Windows.Forms.Button();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.UnStorePinInput = new System.Windows.Forms.TextBox();
             this.PIN = new System.Windows.Forms.Label();
-            this.PasswordInput = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.ShowPackagesButton = new System.Windows.Forms.Button();
             this.StorePackage.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.UnStoreGroup.SuspendLayout();
             this.SuspendLayout();
             // 
             // DrawPanel
@@ -176,21 +177,37 @@ namespace WarehouseShuttle
             this.MassText.TabIndex = 0;
             this.MassText.Text = "Mass";
             // 
-            // groupBox1
+            // UnStoreGroup
             // 
-            this.groupBox1.Controls.Add(this.PasswordInput);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.UnstoreOwnerInput);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.UnstorePackage);
-            this.groupBox1.Controls.Add(this.textBox5);
-            this.groupBox1.Controls.Add(this.PIN);
-            this.groupBox1.Location = new System.Drawing.Point(1072, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(252, 202);
-            this.groupBox1.TabIndex = 12;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Unstore package (get one)";
+            this.UnStoreGroup.Controls.Add(this.UnStorePasswordInput);
+            this.UnStoreGroup.Controls.Add(this.label2);
+            this.UnStoreGroup.Controls.Add(this.UnstoreOwnerInput);
+            this.UnStoreGroup.Controls.Add(this.label1);
+            this.UnStoreGroup.Controls.Add(this.UnstorePackage);
+            this.UnStoreGroup.Controls.Add(this.UnStorePinInput);
+            this.UnStoreGroup.Controls.Add(this.PIN);
+            this.UnStoreGroup.Location = new System.Drawing.Point(1072, 12);
+            this.UnStoreGroup.Name = "UnStoreGroup";
+            this.UnStoreGroup.Size = new System.Drawing.Size(252, 202);
+            this.UnStoreGroup.TabIndex = 12;
+            this.UnStoreGroup.TabStop = false;
+            this.UnStoreGroup.Text = "Unstore package (get one)";
+            // 
+            // UnStorePasswordInput
+            // 
+            this.UnStorePasswordInput.Location = new System.Drawing.Point(128, 104);
+            this.UnStorePasswordInput.Name = "UnStorePasswordInput";
+            this.UnStorePasswordInput.Size = new System.Drawing.Size(100, 22);
+            this.UnStorePasswordInput.TabIndex = 15;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(24, 107);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(56, 13);
+            this.label2.TabIndex = 14;
+            this.label2.Text = "Password";
             // 
             // UnstoreOwnerInput
             // 
@@ -223,12 +240,12 @@ namespace WarehouseShuttle
             this.UnstorePackage.UseVisualStyleBackColor = false;
             this.UnstorePackage.Click += new System.EventHandler(this.UnstorePackageButton_Click);
             // 
-            // textBox5
+            // UnStorePinInput
             // 
-            this.textBox5.Location = new System.Drawing.Point(128, 35);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(100, 22);
-            this.textBox5.TabIndex = 1;
+            this.UnStorePinInput.Location = new System.Drawing.Point(128, 35);
+            this.UnStorePinInput.Name = "UnStorePinInput";
+            this.UnStorePinInput.Size = new System.Drawing.Size(100, 22);
+            this.UnStorePinInput.TabIndex = 1;
             // 
             // PIN
             // 
@@ -239,28 +256,28 @@ namespace WarehouseShuttle
             this.PIN.TabIndex = 0;
             this.PIN.Text = "PIN (last 4 digits)";
             // 
-            // PasswordInput
+            // ShowPackagesButton
             // 
-            this.PasswordInput.Location = new System.Drawing.Point(128, 104);
-            this.PasswordInput.Name = "PasswordInput";
-            this.PasswordInput.Size = new System.Drawing.Size(100, 22);
-            this.PasswordInput.TabIndex = 15;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(24, 107);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 13);
-            this.label2.TabIndex = 14;
-            this.label2.Text = "Password";
+            this.ShowPackagesButton.BackColor = System.Drawing.Color.Transparent;
+            this.ShowPackagesButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ShowPackagesButton.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.ShowPackagesButton.FlatAppearance.BorderSize = 5;
+            this.ShowPackagesButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.ShowPackagesButton.Location = new System.Drawing.Point(825, 341);
+            this.ShowPackagesButton.Name = "ShowPackagesButton";
+            this.ShowPackagesButton.Size = new System.Drawing.Size(201, 38);
+            this.ShowPackagesButton.TabIndex = 16;
+            this.ShowPackagesButton.Text = "All packages";
+            this.ShowPackagesButton.UseVisualStyleBackColor = false;
+            this.ShowPackagesButton.Click += new System.EventHandler(this.ShowPackagesButton_Click);
             // 
             // MainFormScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1336, 705);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.ShowPackagesButton);
+            this.Controls.Add(this.UnStoreGroup);
             this.Controls.Add(this.StorePackage);
             this.Controls.Add(this.DrawPanel);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -269,8 +286,8 @@ namespace WarehouseShuttle
             this.Load += new System.EventHandler(this.Form1_Load);
             this.StorePackage.ResumeLayout(false);
             this.StorePackage.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.UnStoreGroup.ResumeLayout(false);
+            this.UnStoreGroup.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -290,14 +307,15 @@ namespace WarehouseShuttle
         private System.Windows.Forms.TextBox OwnerInput;
         private System.Windows.Forms.Label OwnerText;
         private System.Windows.Forms.Button StorePackageButton;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox UnStoreGroup;
         private System.Windows.Forms.Button UnstorePackage;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox UnStorePinInput;
         private System.Windows.Forms.Label PIN;
         private System.Windows.Forms.TextBox UnstoreOwnerInput;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox PasswordInput;
+        private System.Windows.Forms.TextBox UnStorePasswordInput;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button ShowPackagesButton;
     }
 }
 

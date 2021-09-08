@@ -72,7 +72,8 @@
     </Compile>
     <Compile Include="Infrastructure\IStoreRepository.cs" />
     <Compile Include="Infrastructure\MockStoreRepository.cs" />
-    <Compile Include="Models\DTO\PackageReadDto.cs" />
+    <Compile Include="Models\DTO\StorePackageReadDto.cs" />
+    <Compile Include="Models\DTO\UnStorePackageReadDto.cs" />
     <Compile Include="Models\Package.cs" />
     <Compile Include="Models\StorageCell.cs" />
     <Compile Include="Program.cs" />
