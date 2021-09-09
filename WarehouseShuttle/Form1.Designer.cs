@@ -31,12 +31,12 @@ namespace WarehouseShuttle
         {
             this.DrawPanel = new System.Windows.Forms.Panel();
             this.StorePackage = new System.Windows.Forms.GroupBox();
+            this.EndDateInput = new System.Windows.Forms.MonthCalendar();
+            this.StartDateInput = new System.Windows.Forms.MonthCalendar();
             this.StorePackageButton = new System.Windows.Forms.Button();
             this.PriceInput = new System.Windows.Forms.TextBox();
             this.PriceText = new System.Windows.Forms.Label();
-            this.EndDateInput = new System.Windows.Forms.TextBox();
             this.EndDateText = new System.Windows.Forms.Label();
-            this.StartDateInput = new System.Windows.Forms.TextBox();
             this.StartDateText = new System.Windows.Forms.Label();
             this.OwnerInput = new System.Windows.Forms.TextBox();
             this.OwnerText = new System.Windows.Forms.Label();
@@ -51,25 +51,32 @@ namespace WarehouseShuttle
             this.UnStorePinInput = new System.Windows.Forms.TextBox();
             this.PIN = new System.Windows.Forms.Label();
             this.ShowPackagesButton = new System.Windows.Forms.Button();
+            this.FloorText = new System.Windows.Forms.Label();
+            this.ShowFloorInput = new System.Windows.Forms.TextBox();
+            this.ShowFloor = new System.Windows.Forms.Button();
+            this.TestShuttleButton = new System.Windows.Forms.Button();
+            this.TestInput = new System.Windows.Forms.TextBox();
             this.StorePackage.SuspendLayout();
             this.UnStoreGroup.SuspendLayout();
             this.SuspendLayout();
             // 
             // DrawPanel
             // 
-            this.DrawPanel.Location = new System.Drawing.Point(12, 12);
+            this.DrawPanel.BackColor = System.Drawing.Color.White;
+            this.DrawPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.DrawPanel.Location = new System.Drawing.Point(12, 60);
             this.DrawPanel.Name = "DrawPanel";
-            this.DrawPanel.Size = new System.Drawing.Size(778, 681);
+            this.DrawPanel.Size = new System.Drawing.Size(676, 653);
             this.DrawPanel.TabIndex = 0;
             // 
             // StorePackage
             // 
+            this.StorePackage.Controls.Add(this.EndDateInput);
+            this.StorePackage.Controls.Add(this.StartDateInput);
             this.StorePackage.Controls.Add(this.StorePackageButton);
             this.StorePackage.Controls.Add(this.PriceInput);
             this.StorePackage.Controls.Add(this.PriceText);
-            this.StorePackage.Controls.Add(this.EndDateInput);
             this.StorePackage.Controls.Add(this.EndDateText);
-            this.StorePackage.Controls.Add(this.StartDateInput);
             this.StorePackage.Controls.Add(this.StartDateText);
             this.StorePackage.Controls.Add(this.OwnerInput);
             this.StorePackage.Controls.Add(this.OwnerText);
@@ -77,10 +84,22 @@ namespace WarehouseShuttle
             this.StorePackage.Controls.Add(this.MassText);
             this.StorePackage.Location = new System.Drawing.Point(825, 12);
             this.StorePackage.Name = "StorePackage";
-            this.StorePackage.Size = new System.Drawing.Size(218, 277);
+            this.StorePackage.Size = new System.Drawing.Size(338, 555);
             this.StorePackage.TabIndex = 1;
             this.StorePackage.TabStop = false;
             this.StorePackage.Text = "Store Package";
+            // 
+            // EndDateInput
+            // 
+            this.EndDateInput.Location = new System.Drawing.Point(91, 287);
+            this.EndDateInput.Name = "EndDateInput";
+            this.EndDateInput.TabIndex = 18;
+            // 
+            // StartDateInput
+            // 
+            this.StartDateInput.Location = new System.Drawing.Point(91, 107);
+            this.StartDateInput.Name = "StartDateInput";
+            this.StartDateInput.TabIndex = 17;
             // 
             // StorePackageButton
             // 
@@ -89,7 +108,7 @@ namespace WarehouseShuttle
             this.StorePackageButton.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.StorePackageButton.FlatAppearance.BorderSize = 5;
             this.StorePackageButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.StorePackageButton.Location = new System.Drawing.Point(27, 233);
+            this.StorePackageButton.Location = new System.Drawing.Point(27, 496);
             this.StorePackageButton.Name = "StorePackageButton";
             this.StorePackageButton.Size = new System.Drawing.Size(164, 38);
             this.StorePackageButton.TabIndex = 2;
@@ -99,7 +118,7 @@ namespace WarehouseShuttle
             // 
             // PriceInput
             // 
-            this.PriceInput.Location = new System.Drawing.Point(91, 186);
+            this.PriceInput.Location = new System.Drawing.Point(91, 461);
             this.PriceInput.Name = "PriceInput";
             this.PriceInput.Size = new System.Drawing.Size(100, 22);
             this.PriceInput.TabIndex = 11;
@@ -107,34 +126,20 @@ namespace WarehouseShuttle
             // PriceText
             // 
             this.PriceText.AutoSize = true;
-            this.PriceText.Location = new System.Drawing.Point(24, 189);
+            this.PriceText.Location = new System.Drawing.Point(24, 464);
             this.PriceText.Name = "PriceText";
             this.PriceText.Size = new System.Drawing.Size(31, 13);
             this.PriceText.TabIndex = 10;
             this.PriceText.Text = "Price";
             // 
-            // EndDateInput
-            // 
-            this.EndDateInput.Location = new System.Drawing.Point(91, 140);
-            this.EndDateInput.Name = "EndDateInput";
-            this.EndDateInput.Size = new System.Drawing.Size(100, 22);
-            this.EndDateInput.TabIndex = 9;
-            // 
             // EndDateText
             // 
             this.EndDateText.AutoSize = true;
-            this.EndDateText.Location = new System.Drawing.Point(24, 140);
+            this.EndDateText.Location = new System.Drawing.Point(28, 288);
             this.EndDateText.Name = "EndDateText";
             this.EndDateText.Size = new System.Drawing.Size(51, 13);
             this.EndDateText.TabIndex = 8;
             this.EndDateText.Text = "EndDate";
-            // 
-            // StartDateInput
-            // 
-            this.StartDateInput.Location = new System.Drawing.Point(91, 111);
-            this.StartDateInput.Name = "StartDateInput";
-            this.StartDateInput.Size = new System.Drawing.Size(100, 22);
-            this.StartDateInput.TabIndex = 7;
             // 
             // StartDateText
             // 
@@ -186,7 +191,7 @@ namespace WarehouseShuttle
             this.UnStoreGroup.Controls.Add(this.UnstorePackage);
             this.UnStoreGroup.Controls.Add(this.UnStorePinInput);
             this.UnStoreGroup.Controls.Add(this.PIN);
-            this.UnStoreGroup.Location = new System.Drawing.Point(1072, 12);
+            this.UnStoreGroup.Location = new System.Drawing.Point(1187, 22);
             this.UnStoreGroup.Name = "UnStoreGroup";
             this.UnStoreGroup.Size = new System.Drawing.Size(252, 202);
             this.UnStoreGroup.TabIndex = 12;
@@ -263,7 +268,7 @@ namespace WarehouseShuttle
             this.ShowPackagesButton.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.ShowPackagesButton.FlatAppearance.BorderSize = 5;
             this.ShowPackagesButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.ShowPackagesButton.Location = new System.Drawing.Point(825, 341);
+            this.ShowPackagesButton.Location = new System.Drawing.Point(825, 589);
             this.ShowPackagesButton.Name = "ShowPackagesButton";
             this.ShowPackagesButton.Size = new System.Drawing.Size(201, 38);
             this.ShowPackagesButton.TabIndex = 16;
@@ -271,11 +276,70 @@ namespace WarehouseShuttle
             this.ShowPackagesButton.UseVisualStyleBackColor = false;
             this.ShowPackagesButton.Click += new System.EventHandler(this.ShowPackagesButton_Click);
             // 
+            // FloorText
+            // 
+            this.FloorText.AutoSize = true;
+            this.FloorText.Location = new System.Drawing.Point(12, 22);
+            this.FloorText.Name = "FloorText";
+            this.FloorText.Size = new System.Drawing.Size(46, 13);
+            this.FloorText.TabIndex = 19;
+            this.FloorText.Text = "Floor: 1";
+            // 
+            // ShowFloorInput
+            // 
+            this.ShowFloorInput.Location = new System.Drawing.Point(81, 19);
+            this.ShowFloorInput.Name = "ShowFloorInput";
+            this.ShowFloorInput.Size = new System.Drawing.Size(100, 22);
+            this.ShowFloorInput.TabIndex = 19;
+            // 
+            // ShowFloor
+            // 
+            this.ShowFloor.BackColor = System.Drawing.Color.Transparent;
+            this.ShowFloor.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ShowFloor.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.ShowFloor.FlatAppearance.BorderSize = 5;
+            this.ShowFloor.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.ShowFloor.Location = new System.Drawing.Point(187, 9);
+            this.ShowFloor.Name = "ShowFloor";
+            this.ShowFloor.Size = new System.Drawing.Size(164, 38);
+            this.ShowFloor.TabIndex = 19;
+            this.ShowFloor.Text = "Show floor";
+            this.ShowFloor.UseVisualStyleBackColor = false;
+            this.ShowFloor.Click += new System.EventHandler(this.ShowFloor_Click);
+            // 
+            // TestShuttleButton
+            // 
+            this.TestShuttleButton.BackColor = System.Drawing.Color.Transparent;
+            this.TestShuttleButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.TestShuttleButton.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.TestShuttleButton.FlatAppearance.BorderSize = 5;
+            this.TestShuttleButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.TestShuttleButton.Location = new System.Drawing.Point(1127, 647);
+            this.TestShuttleButton.Name = "TestShuttleButton";
+            this.TestShuttleButton.Size = new System.Drawing.Size(267, 66);
+            this.TestShuttleButton.TabIndex = 20;
+            this.TestShuttleButton.Text = "Test the shuttle";
+            this.TestShuttleButton.UseVisualStyleBackColor = false;
+            this.TestShuttleButton.Click += new System.EventHandler(this.TestShuttleButton_Click);
+            // 
+            // TestInput
+            // 
+            this.TestInput.Location = new System.Drawing.Point(1214, 619);
+            this.TestInput.Name = "TestInput";
+            this.TestInput.Size = new System.Drawing.Size(100, 22);
+            this.TestInput.TabIndex = 19;
+            this.TestInput.Text = "640";
+            // 
             // MainFormScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1336, 705);
+            this.ClientSize = new System.Drawing.Size(1451, 725);
+            this.Controls.Add(this.TestInput);
+            this.Controls.Add(this.TestShuttleButton);
+            this.Controls.Add(this.ShowFloor);
+            this.Controls.Add(this.ShowFloorInput);
+            this.Controls.Add(this.FloorText);
             this.Controls.Add(this.ShowPackagesButton);
             this.Controls.Add(this.UnStoreGroup);
             this.Controls.Add(this.StorePackage);
@@ -289,6 +353,7 @@ namespace WarehouseShuttle
             this.UnStoreGroup.ResumeLayout(false);
             this.UnStoreGroup.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -300,9 +365,7 @@ namespace WarehouseShuttle
         private System.Windows.Forms.Label MassText;
         private System.Windows.Forms.TextBox PriceInput;
         private System.Windows.Forms.Label PriceText;
-        private System.Windows.Forms.TextBox EndDateInput;
         private System.Windows.Forms.Label EndDateText;
-        private System.Windows.Forms.TextBox StartDateInput;
         private System.Windows.Forms.Label StartDateText;
         private System.Windows.Forms.TextBox OwnerInput;
         private System.Windows.Forms.Label OwnerText;
@@ -316,6 +379,13 @@ namespace WarehouseShuttle
         private System.Windows.Forms.TextBox UnStorePasswordInput;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button ShowPackagesButton;
+        private System.Windows.Forms.MonthCalendar StartDateInput;
+        private System.Windows.Forms.MonthCalendar EndDateInput;
+        private System.Windows.Forms.Label FloorText;
+        private System.Windows.Forms.TextBox ShowFloorInput;
+        private System.Windows.Forms.Button ShowFloor;
+        private System.Windows.Forms.Button TestShuttleButton;
+        private System.Windows.Forms.TextBox TestInput;
     }
 }
 
