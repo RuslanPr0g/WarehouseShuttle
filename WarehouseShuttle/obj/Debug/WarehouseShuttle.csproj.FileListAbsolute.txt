@@ -19,3 +19,7 @@ C:\Users\Administrator\Desktop\3rdyearACADEMY\AVPZ\WarehouseShuttle\WarehouseShu
 C:\Users\Administrator\Desktop\3rdyearACADEMY\AVPZ\WarehouseShuttle\WarehouseShuttle\bin\Debug\System.Numerics.Vectors.xml
 C:\Users\Administrator\Desktop\3rdyearACADEMY\AVPZ\WarehouseShuttle\WarehouseShuttle\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\Administrator\Desktop\3rdyearACADEMY\AVPZ\WarehouseShuttle\WarehouseShuttle\obj\Debug\WarehouseShuttle.csproj.CopyComplete
+C:\Users\Administrator\Desktop\3rdyearACADEMY\AVPZ\WarehouseShuttle\WarehouseShuttle\bin\Debug\EntityFramework.dll
+C:\Users\Administrator\Desktop\3rdyearACADEMY\AVPZ\WarehouseShuttle\WarehouseShuttle\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Administrator\Desktop\3rdyearACADEMY\AVPZ\WarehouseShuttle\WarehouseShuttle\bin\Debug\EntityFramework.xml
+C:\Users\Administrator\Desktop\3rdyearACADEMY\AVPZ\WarehouseShuttle\WarehouseShuttle\bin\Debug\EntityFramework.SqlServer.xml

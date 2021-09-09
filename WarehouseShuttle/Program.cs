@@ -14,7 +14,7 @@ namespace WarehouseShuttle
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainFormScreen(new MockStoreRepository()));
+            Application.Run(new MainFormScreen(new InMemoryStoreRepository()));
         }
     }
 }
