@@ -65,6 +65,11 @@ namespace WarehouseShuttle.Infrastructure
             return Packages.Count - 1;
         }
 
+        void IStoreRepository.ClearDB()
+        {
+            Packages.Clear();
+        }
+
         #endregion
 
         #region Private methods

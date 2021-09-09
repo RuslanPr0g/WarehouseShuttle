@@ -56,6 +56,7 @@ namespace WarehouseShuttle
             this.ShowFloor = new System.Windows.Forms.Button();
             this.TestShuttleButton = new System.Windows.Forms.Button();
             this.TestInput = new System.Windows.Forms.TextBox();
+            this.ClearAllButton = new System.Windows.Forms.Button();
             this.StorePackage.SuspendLayout();
             this.UnStoreGroup.SuspendLayout();
             this.SuspendLayout();
@@ -82,7 +83,7 @@ namespace WarehouseShuttle
             this.StorePackage.Controls.Add(this.OwnerText);
             this.StorePackage.Controls.Add(this.MassInput);
             this.StorePackage.Controls.Add(this.MassText);
-            this.StorePackage.Location = new System.Drawing.Point(825, 12);
+            this.StorePackage.Location = new System.Drawing.Point(727, 12);
             this.StorePackage.Name = "StorePackage";
             this.StorePackage.Size = new System.Drawing.Size(338, 555);
             this.StorePackage.TabIndex = 1;
@@ -191,7 +192,7 @@ namespace WarehouseShuttle
             this.UnStoreGroup.Controls.Add(this.UnstorePackage);
             this.UnStoreGroup.Controls.Add(this.UnStorePinInput);
             this.UnStoreGroup.Controls.Add(this.PIN);
-            this.UnStoreGroup.Location = new System.Drawing.Point(1187, 22);
+            this.UnStoreGroup.Location = new System.Drawing.Point(1089, 22);
             this.UnStoreGroup.Name = "UnStoreGroup";
             this.UnStoreGroup.Size = new System.Drawing.Size(252, 202);
             this.UnStoreGroup.TabIndex = 12;
@@ -268,7 +269,7 @@ namespace WarehouseShuttle
             this.ShowPackagesButton.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.ShowPackagesButton.FlatAppearance.BorderSize = 5;
             this.ShowPackagesButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.ShowPackagesButton.Location = new System.Drawing.Point(825, 589);
+            this.ShowPackagesButton.Location = new System.Drawing.Point(798, 632);
             this.ShowPackagesButton.Name = "ShowPackagesButton";
             this.ShowPackagesButton.Size = new System.Drawing.Size(201, 38);
             this.ShowPackagesButton.TabIndex = 16;
@@ -314,7 +315,7 @@ namespace WarehouseShuttle
             this.TestShuttleButton.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.TestShuttleButton.FlatAppearance.BorderSize = 5;
             this.TestShuttleButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.TestShuttleButton.Location = new System.Drawing.Point(1127, 647);
+            this.TestShuttleButton.Location = new System.Drawing.Point(1074, 300);
             this.TestShuttleButton.Name = "TestShuttleButton";
             this.TestShuttleButton.Size = new System.Drawing.Size(267, 66);
             this.TestShuttleButton.TabIndex = 20;
@@ -324,17 +325,33 @@ namespace WarehouseShuttle
             // 
             // TestInput
             // 
-            this.TestInput.Location = new System.Drawing.Point(1214, 619);
+            this.TestInput.Location = new System.Drawing.Point(1161, 272);
             this.TestInput.Name = "TestInput";
             this.TestInput.Size = new System.Drawing.Size(100, 22);
             this.TestInput.TabIndex = 19;
             this.TestInput.Text = "640";
             // 
+            // ClearAllButton
+            // 
+            this.ClearAllButton.BackColor = System.Drawing.Color.Transparent;
+            this.ClearAllButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ClearAllButton.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.ClearAllButton.FlatAppearance.BorderSize = 5;
+            this.ClearAllButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.ClearAllButton.Location = new System.Drawing.Point(1161, 675);
+            this.ClearAllButton.Name = "ClearAllButton";
+            this.ClearAllButton.Size = new System.Drawing.Size(201, 38);
+            this.ClearAllButton.TabIndex = 21;
+            this.ClearAllButton.Text = "Clear all packages";
+            this.ClearAllButton.UseVisualStyleBackColor = false;
+            this.ClearAllButton.Click += new System.EventHandler(this.ClearAllButton_Click);
+            // 
             // MainFormScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1451, 725);
+            this.ClientSize = new System.Drawing.Size(1367, 725);
+            this.Controls.Add(this.ClearAllButton);
             this.Controls.Add(this.TestInput);
             this.Controls.Add(this.TestShuttleButton);
             this.Controls.Add(this.ShowFloor);
@@ -386,6 +403,7 @@ namespace WarehouseShuttle
         private System.Windows.Forms.Button ShowFloor;
         private System.Windows.Forms.Button TestShuttleButton;
         private System.Windows.Forms.TextBox TestInput;
+        private System.Windows.Forms.Button ClearAllButton;
     }
 }
 

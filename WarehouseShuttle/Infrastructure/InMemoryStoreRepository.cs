@@ -8,7 +8,7 @@ namespace WarehouseShuttle.Infrastructure
     {
         #region Tables
 
-        private FileAccess fileAccess = new FileAccess();
+        private readonly FileAccess fileAccess = new FileAccess();
 
         public List<Package> Packages { get; set; }
 
@@ -66,6 +66,12 @@ namespace WarehouseShuttle.Infrastructure
         {
             Packages = fileAccess.ReadPackagesFromFile();
             return Packages.Count - 1;
+        }
+
+        public void ClearDB()
+        {
+            Packages.Clear();
+            fileAccess.ReWritePackagesToFile(Packages);
         }
 
         #endregion

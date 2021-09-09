@@ -73,6 +73,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Auth.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Auth.Designer.cs">
+      <DependentUpon>Auth.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\ForbiddenSymbols.cs" />
     <Compile Include="Common\GlobalVariables.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -80,11 +87,15 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\AuthHandler.cs" />
     <Compile Include="Infrastructure\FileAccess.cs" />
     <Compile Include="Infrastructure\InMemoryStoreRepository.cs" />
+    <Compile Include="Infrastructure\InMemoryUserRepository.cs" />
     <Compile Include="Infrastructure\IStoreRepository.cs" />
+    <Compile Include="Infrastructure\IUserRepository.cs" />
     <Compile Include="Infrastructure\MockStoreRepository.cs" />
     <Compile Include="Models\3DStoragePoint.cs" />
+    <Compile Include="Models\Administrator.cs" />
     <Compile Include="Models\DTO\StorePackageReadDto.cs" />
     <Compile Include="Models\DTO\UnStorePackageReadDto.cs" />
     <Compile Include="Models\Package.cs" />
@@ -92,6 +103,9 @@
     <Compile Include="Models\StorageCell.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Auth.resx">
+      <DependentUpon>Auth.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

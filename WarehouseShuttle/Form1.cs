@@ -409,6 +409,14 @@ namespace WarehouseShuttle
             }
         }
 
+        private void ClearAllButton_Click(object sender, EventArgs e)
+        {
+            _storeRepository.ClearDB();
+            _storageCells.ForEach(c => c.HasPackage = false);
+            DrawStorage(1);
+            DrawShuttle();
+        }
+
         #region Private methods
 
         private (StorePackageReadDto, string) GetPackageFromUIFormInput()

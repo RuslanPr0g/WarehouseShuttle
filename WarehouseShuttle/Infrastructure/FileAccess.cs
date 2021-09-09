@@ -8,15 +8,16 @@ namespace WarehouseShuttle.Infrastructure
     public class FileAccess
     {
         private const string packages = "packages.bin";
+        private const string users = "users.bin";
 
-        public void WritePackageToFile(Package package)
+        public void ReWriteUsersToFile(List<Administrator> users)
         {
             FileStream fs;
             BinaryWriter bw;
 
             try
             {
-                fs = new FileStream(packages, FileMode.Append);
+                fs = new FileStream(FileAccess.users, FileMode.Create);
                 bw = new BinaryWriter(fs);
             }
             catch
@@ -26,16 +27,12 @@ namespace WarehouseShuttle.Infrastructure
 
             try
             {
-                bw.Write(value: package.Number);
-                bw.Write(value: package.StorageCellNumber);
-                bw.Write(value: package.PackageInternationalNumber);
-                bw.Write(value: package.Mass);
-                bw.Write(value: package.Owner);
-                bw.Write(value: package.StartDate.ToString());
-                bw.Write(value: package.EndDate.ToString());
-                bw.Write(value: package.Price);
-                bw.Write(value: package.Password);
-                bw.Write(value: package.SoftDeleted);
+                foreach (var user in users)
+                {
+                    bw.Write(value: user.Id);
+                    bw.Write(value: user.Username);
+                    bw.Write(value: user.Password);
+                }
             }
             catch
             {
@@ -44,6 +41,57 @@ namespace WarehouseShuttle.Infrastructure
 
             bw.Close();
             fs.Close();
+        }
+
+        public List<Administrator> ReadUsersFromFile()
+        {
+            List<Administrator> users = new List<Administrator>();
+
+            FileStream fs;
+            BinaryReader br;
+
+            try
+            {
+                fs = new FileStream(FileAccess.users, FileMode.Open);
+                br = new BinaryReader(fs);
+            }
+            catch
+            {
+                return users;
+            }
+
+            int Id = 0;
+            string Username = string.Empty;
+            string Password = string.Empty;
+
+            try
+            {
+                while (true)
+                {
+                    try
+                    {
+                        Id = br.ReadInt32();
+                        Username = br.ReadString();
+                        Password = br.ReadString();
+
+                        users.Add(new Administrator()
+                        {
+                            Id = Id,
+                            Username = Username,
+                            Password = Password
+                        });
+                    }
+                    catch { break; }
+                }
+            }
+            catch
+            {
+            }
+
+            br.Close();
+            fs.Close();
+
+            return users;
         }
 
         public void ReWritePackagesToFile(List<Package> packages)

@@ -20,6 +20,11 @@ namespace WarehouseShuttle.Infrastructure
         void UnStorePackageInDB(int packageNumber);
 
         /// <summary>
+        /// Clears all the DB records
+        /// </summary>
+        void ClearDB();
+
+        /// <summary>
         /// Gets the packages which are not softly deleted
         /// </summary>
         /// <returns>List of <see cref="Package"/></returns>
@@ -58,7 +63,5 @@ namespace WarehouseShuttle.Infrastructure
         /// <param name="storageCellNumber">Storage cell number</param>
         /// <returns><see cref="bool"/></returns>
         bool IsThereAPackageInStorageCell(int storageCellNumber);
-
-        // TODO: add history of storing items
     }
 }
