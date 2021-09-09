@@ -433,10 +433,13 @@ namespace WarehouseShuttle
             if (owner == string.Empty)
                 return (null, "Owner is not valid.");
 
-            if (!priceValid)
+            if (!priceValid || price < 0)
                 return (null, "Price is not valid.");
 
-            if (mass > GlobalVariables.MaxMassAvailableInKG)
+            if (end > start)
+                return (null, "Start date must be less than or equal to end date, so that the end date is in the future or it is one day.");
+
+            if (mass > GlobalVariables.MaxMassAvailableInKG || mass < 0)
                 return (null, "The package is too heavy for our storage.");
 
             return (new StorePackageReadDto()
