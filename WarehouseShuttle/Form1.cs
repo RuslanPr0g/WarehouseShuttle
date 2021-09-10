@@ -96,12 +96,30 @@ namespace WarehouseShuttle
 
             DrawStorage(Shuttle.Position.Floor);
 
+            int offset = 5;
+            int speed = 10;
+
+            if (radioButton1.Checked)
+                speed = int.Parse(radioButton1.Text);
+
+            if (radioButton2.Checked)
+                speed = int.Parse(radioButton2.Text);
+
+            if (radioButton3.Checked)
+                speed = int.Parse(radioButton3.Text);
+
+            if (radioButton4.Checked)
+                speed = int.Parse(radioButton4.Text);
+
+            if (radioButton5.Checked)
+                speed = int.Parse(radioButton5.Text);
+
             // MOVE IN Y
-            for (int pixel = Shuttle.Position.CenterPointOnPlane.Y; pixel >= moveTo.CenterPointOnPlane.Y + StorageCell.Height; pixel -= 5)
+            for (int pixel = Shuttle.Position.CenterPointOnPlane.Y; pixel >= moveTo.CenterPointOnPlane.Y + StorageCell.Height; pixel -= offset)
             {
                 graphicsObj.FillEllipse(red, new Rectangle(Shuttle.Position.CenterPointOnPlane.X,
                     pixel, Shuttle.Width, Shuttle.Height));
-                Thread.Sleep(50);
+                Thread.Sleep(speed);
                 graphicsObj.FillEllipse(white, new Rectangle(Shuttle.Position.CenterPointOnPlane.X,
                     pixel, Shuttle.Width, Shuttle.Height));
                 Shuttle.Position.CenterPointOnPlane.Y = pixel;
@@ -109,21 +127,21 @@ namespace WarehouseShuttle
 
             // MOVE IN X
             if (moveTo.CenterPointOnPlane.X > Shuttle.Position.CenterPointOnPlane.X)
-                for (int pixel = Shuttle.Position.CenterPointOnPlane.X; pixel <= moveTo.CenterPointOnPlane.X + 3; pixel += 3)
+                for (int pixel = Shuttle.Position.CenterPointOnPlane.X; pixel <= moveTo.CenterPointOnPlane.X + offset; pixel += offset)
                 {
                     graphicsObj.FillEllipse(red, new Rectangle(pixel,
                         Shuttle.Position.CenterPointOnPlane.Y, Shuttle.Width, Shuttle.Height));
-                    Thread.Sleep(50);
+                    Thread.Sleep(speed);
                     graphicsObj.FillEllipse(white, new Rectangle(pixel,
                         Shuttle.Position.CenterPointOnPlane.Y, Shuttle.Width, Shuttle.Height));
                     Shuttle.Position.CenterPointOnPlane.X = pixel;
                 }
             else
-                for (int pixel = Shuttle.Position.CenterPointOnPlane.X; pixel >= moveTo.CenterPointOnPlane.X + 3; pixel -= 3)
+                for (int pixel = Shuttle.Position.CenterPointOnPlane.X; pixel >= moveTo.CenterPointOnPlane.X + offset; pixel -= offset)
                 {
                     graphicsObj.FillEllipse(red, new Rectangle(pixel,
                         Shuttle.Position.CenterPointOnPlane.Y, Shuttle.Width, Shuttle.Height));
-                    Thread.Sleep(50);
+                    Thread.Sleep(speed);
                     graphicsObj.FillEllipse(white, new Rectangle(pixel,
                         Shuttle.Position.CenterPointOnPlane.Y, Shuttle.Width, Shuttle.Height));
                     Shuttle.Position.CenterPointOnPlane.X = pixel;
@@ -162,32 +180,32 @@ namespace WarehouseShuttle
 
             // MOVE IN X
             if (INITIAL_POINT.X > Shuttle.Position.CenterPointOnPlane.X)
-                for (int pixel = Shuttle.Position.CenterPointOnPlane.X; pixel <= INITIAL_POINT.X + 3; pixel += 3)
+                for (int pixel = Shuttle.Position.CenterPointOnPlane.X; pixel <= INITIAL_POINT.X + offset; pixel += offset)
                 {
                     graphicsObj.FillEllipse(red, new Rectangle(pixel,
                         Shuttle.Position.CenterPointOnPlane.Y, Shuttle.Width, Shuttle.Height));
-                    Thread.Sleep(50);
+                    Thread.Sleep(speed);
                     graphicsObj.FillEllipse(white, new Rectangle(pixel,
                         Shuttle.Position.CenterPointOnPlane.Y, Shuttle.Width, Shuttle.Height));
                     Shuttle.Position.CenterPointOnPlane.X = pixel;
                 }
             else
-                for (int pixel = Shuttle.Position.CenterPointOnPlane.X; pixel >= INITIAL_POINT.X + 3; pixel -= 3)
+                for (int pixel = Shuttle.Position.CenterPointOnPlane.X; pixel >= INITIAL_POINT.X + offset; pixel -= offset)
                 {
                     graphicsObj.FillEllipse(red, new Rectangle(pixel,
                         Shuttle.Position.CenterPointOnPlane.Y, Shuttle.Width, Shuttle.Height));
-                    Thread.Sleep(50);
+                    Thread.Sleep(speed);
                     graphicsObj.FillEllipse(white, new Rectangle(pixel,
                         Shuttle.Position.CenterPointOnPlane.Y, Shuttle.Width, Shuttle.Height));
                     Shuttle.Position.CenterPointOnPlane.X = pixel;
                 }
 
             // MOVE IN Y
-            for (int pixel = Shuttle.Position.CenterPointOnPlane.Y; pixel <= INITIAL_POINT.Y; pixel += 5)
+            for (int pixel = Shuttle.Position.CenterPointOnPlane.Y; pixel <= INITIAL_POINT.Y; pixel += offset)
             {
                 graphicsObj.FillEllipse(red, new Rectangle(Shuttle.Position.CenterPointOnPlane.X,
                     pixel, Shuttle.Width, Shuttle.Height));
-                Thread.Sleep(50);
+                Thread.Sleep(speed);
                 graphicsObj.FillEllipse(white, new Rectangle(Shuttle.Position.CenterPointOnPlane.X,
                     pixel, Shuttle.Width, Shuttle.Height));
                 Shuttle.Position.CenterPointOnPlane.Y = pixel;
@@ -355,24 +373,9 @@ namespace WarehouseShuttle
 
         private void ShowPackagesButton_Click(object sender, EventArgs e)
         {
-            StringBuilder info = new StringBuilder();
-
             var packages = _storeRepository.GetActualPackages();
-
-            foreach (var package in packages)
-            {
-                info.AppendLine($"Number: {package.Number}");
-                info.AppendLine($"StorageCellNumber: {package.StorageCellNumber}");
-                info.AppendLine($"PackageInternationalNumber: {package.PackageInternationalNumber}");
-                info.AppendLine($"Mass: {package.Mass}");
-                info.AppendLine($"Owner: {package.Owner}");
-                info.AppendLine($"StartDate: {package.StartDate}");
-                info.AppendLine($"EndDate: {package.EndDate}");
-                info.AppendLine($"Price: {package.Price}");
-                info.AppendLine();
-            }
-
-            MessageBox.Show(info.ToString());
+            PackageList packageList = new PackageList(packages);
+            packageList.ShowDialog();
         }
 
         private void TestShuttleButton_Click(object sender, EventArgs e)
@@ -436,8 +439,8 @@ namespace WarehouseShuttle
             if (!priceValid || price < 0)
                 return (null, "Price is not valid.");
 
-            if (end > start)
-                return (null, "Start date must be less than or equal to end date, so that the end date is in the future or it is one day.");
+            //if (end > start)
+            //    return (null, "Start date must be less than or equal to end date, so that the end date is in the future or it is one day.");
 
             if (mass > GlobalVariables.MaxMassAvailableInKG || mass < 0)
                 return (null, "The package is too heavy for our storage.");
@@ -516,5 +519,10 @@ namespace WarehouseShuttle
         }
 
         #endregion
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

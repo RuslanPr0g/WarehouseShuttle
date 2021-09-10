@@ -57,6 +57,12 @@ namespace WarehouseShuttle
             this.TestShuttleButton = new System.Windows.Forms.Button();
             this.TestInput = new System.Windows.Forms.TextBox();
             this.ClearAllButton = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.radioButton5 = new System.Windows.Forms.RadioButton();
             this.StorePackage.SuspendLayout();
             this.UnStoreGroup.SuspendLayout();
             this.SuspendLayout();
@@ -325,7 +331,7 @@ namespace WarehouseShuttle
             // 
             // TestInput
             // 
-            this.TestInput.Location = new System.Drawing.Point(1161, 272);
+            this.TestInput.Location = new System.Drawing.Point(1089, 272);
             this.TestInput.Name = "TestInput";
             this.TestInput.Size = new System.Drawing.Size(100, 22);
             this.TestInput.TabIndex = 19;
@@ -346,11 +352,83 @@ namespace WarehouseShuttle
             this.ClearAllButton.UseVisualStyleBackColor = false;
             this.ClearAllButton.Click += new System.EventHandler(this.ClearAllButton_Click);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(1102, 529);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(39, 13);
+            this.label3.TabIndex = 19;
+            this.label3.Text = "Speed";
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(1105, 560);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(37, 17);
+            this.radioButton1.TabIndex = 22;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "50";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(1152, 560);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(37, 17);
+            this.radioButton2.TabIndex = 23;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "40";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
+            // 
+            // radioButton3
+            // 
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Checked = true;
+            this.radioButton3.Location = new System.Drawing.Point(1195, 560);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(37, 17);
+            this.radioButton3.TabIndex = 24;
+            this.radioButton3.TabStop = true;
+            this.radioButton3.Text = "30";
+            this.radioButton3.UseVisualStyleBackColor = true;
+            // 
+            // radioButton4
+            // 
+            this.radioButton4.AutoSize = true;
+            this.radioButton4.Location = new System.Drawing.Point(1238, 560);
+            this.radioButton4.Name = "radioButton4";
+            this.radioButton4.Size = new System.Drawing.Size(37, 17);
+            this.radioButton4.TabIndex = 25;
+            this.radioButton4.TabStop = true;
+            this.radioButton4.Text = "20";
+            this.radioButton4.UseVisualStyleBackColor = true;
+            // 
+            // radioButton5
+            // 
+            this.radioButton5.AutoSize = true;
+            this.radioButton5.Location = new System.Drawing.Point(1281, 560);
+            this.radioButton5.Name = "radioButton5";
+            this.radioButton5.Size = new System.Drawing.Size(37, 17);
+            this.radioButton5.TabIndex = 26;
+            this.radioButton5.TabStop = true;
+            this.radioButton5.Text = "10";
+            this.radioButton5.UseVisualStyleBackColor = true;
+            // 
             // MainFormScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1367, 725);
+            this.Controls.Add(this.radioButton5);
+            this.Controls.Add(this.radioButton4);
+            this.Controls.Add(this.radioButton3);
+            this.Controls.Add(this.radioButton2);
+            this.Controls.Add(this.radioButton1);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.ClearAllButton);
             this.Controls.Add(this.TestInput);
             this.Controls.Add(this.TestShuttleButton);
@@ -404,6 +482,12 @@ namespace WarehouseShuttle
         private System.Windows.Forms.Button TestShuttleButton;
         private System.Windows.Forms.TextBox TestInput;
         private System.Windows.Forms.Button ClearAllButton;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.RadioButton radioButton4;
+        private System.Windows.Forms.RadioButton radioButton5;
     }
 }
 

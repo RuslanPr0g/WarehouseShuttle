@@ -24,3 +24,4 @@ C:\Users\Administrator\Desktop\3rdyearACADEMY\AVPZ\WarehouseShuttle\WarehouseShu
 C:\Users\Administrator\Desktop\3rdyearACADEMY\AVPZ\WarehouseShuttle\WarehouseShuttle\bin\Debug\EntityFramework.xml
 C:\Users\Administrator\Desktop\3rdyearACADEMY\AVPZ\WarehouseShuttle\WarehouseShuttle\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Administrator\Desktop\3rdyearACADEMY\AVPZ\WarehouseShuttle\WarehouseShuttle\obj\Debug\WarehouseShuttle.Auth.resources
+C:\Users\Administrator\Desktop\3rdyearACADEMY\AVPZ\WarehouseShuttle\WarehouseShuttle\obj\Debug\WarehouseShuttle.PackageList.resources
