@@ -153,11 +153,10 @@ namespace WarehouseShuttle
             Thread.Sleep(1000);
 
             Shuttle.Position.Floor = moveTo.Floor;
-            FloorText.Text = $"Floor: {moveTo.Floor}";
             DrawStorage(Shuttle.Position.Floor);
             DrawShuttle();
 
-            Thread.Sleep(1000);
+            Thread.Sleep(500);
 
             if (store)
             {
@@ -174,9 +173,12 @@ namespace WarehouseShuttle
             // MOVE BACK
             // MOVE IN Z (floor)
             Thread.Sleep(1000);
+
             Shuttle.Position.Floor = 1;
-            FloorText.Text = $"Floor: {Shuttle.Position.Floor}";
             DrawStorage(Shuttle.Position.Floor);
+            DrawShuttle();
+
+            Thread.Sleep(500);
 
             // MOVE IN X
             if (INITIAL_POINT.X > Shuttle.Position.CenterPointOnPlane.X)
@@ -225,10 +227,14 @@ namespace WarehouseShuttle
 
         private void DrawStorage(int floor)
         {
+            if (floor <= 0)
+                return;
+
             Graphics graphicsObj = DrawPanel.CreateGraphics();
             graphicsObj.Clear(Color.White);
             var blackPen = new Pen(Color.Black, 1);
-            var redPen = new Pen(Color.Red, 1);
+            var redPen = new Pen(Color.Red, 1); 
+            var orange = new SolidBrush(Color.Orange);
 
             var endCell = floor * (NUMBER_OF_CELLS_ON_EACH_SIDE_HORIZONTAL * 2);
 
@@ -252,7 +258,14 @@ namespace WarehouseShuttle
                 }
             }
 
-            FloorText.Text = $"Floor: {Shuttle.Position.Floor}";
+            FloorText.Text = $"Floor: {floor}";
+            StringFormat sf = new StringFormat
+            {
+                FormatFlags = StringFormatFlags.DirectionRightToLeft,
+            };
+            Font font = new Font(Font.Name, 20.0F, FontStyle.Bold);
+            graphicsObj.DrawString(floor.ToString(), font, orange, new Point(DrawPanel.Width - 50,
+                DrawPanel.Height - 70), sf);
         }
 
         private int? FindClosestPathFromShuttleToStorageCellAndReturnStorageCellNumber()
