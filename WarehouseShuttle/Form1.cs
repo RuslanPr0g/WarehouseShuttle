@@ -85,7 +85,7 @@ namespace WarehouseShuttle
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            this.WindowState = FormWindowState.Maximized;
         }
 
         private void DrawShuttleMoving(StoragePoint3D moveTo, int cellIndex, bool store = true)
@@ -322,7 +322,7 @@ namespace WarehouseShuttle
 
             _storeRepository.StorePackageToDB(packageToStore);
 
-            MessageBox.Show($"Your password: \"{password}\", please, keep it in a safe place. It is on the {floor} floor.");
+            MessageBox.Show($"Your PIN: \"{PIN}\", Your password: \"{password}\", please, keep it in a safe place. It is on the {floor} floor.");
             ClearAllInputsInGroup(StorePackage);
             TestShuttleButton.Text = $"Last floor: {floor}";
         }

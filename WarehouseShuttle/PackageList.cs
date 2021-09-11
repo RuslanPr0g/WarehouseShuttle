@@ -31,6 +31,8 @@ namespace WarehouseShuttle
                     _packages.ElementAt(i).SoftDeleted,
                     _packages.ElementAt(i).Password);
             }
+
+            this.WindowState = FormWindowState.Maximized;
         }
     }
 }
