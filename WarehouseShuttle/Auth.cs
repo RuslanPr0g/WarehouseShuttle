@@ -158,7 +158,12 @@ namespace WarehouseShuttle
                     {
                         Administrator s = _userRepository.GetUsers().FirstOrDefault(u => u.Username == user.Username);
 
-                        MainFormScreen SP = new MainFormScreen(new InMemoryStoreRepository());
+                        var userRole = UserRole.Customer;
+
+                        if (AdminRadio.Checked)
+                            userRole = UserRole.Admin;
+
+                        MainFormScreen SP = new MainFormScreen(new InMemoryStoreRepository(), userRole);
 
                         Hide();
                         SP.ShowDialog();

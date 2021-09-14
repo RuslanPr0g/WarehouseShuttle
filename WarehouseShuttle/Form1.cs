@@ -28,10 +28,15 @@ namespace WarehouseShuttle
 
         private static readonly Random rndSeed = new Random();
 
-        public MainFormScreen(IStoreRepository storeRepository)
+        private readonly UserRole _currentRole;
+
+        public MainFormScreen(IStoreRepository storeRepository, UserRole userRole)
         {
             InitializeComponent();
             _storeRepository = storeRepository;
+
+            _currentRole = userRole;
+            HandleView(userRole);
 
             int width = DrawPanel.Width;
             int height = DrawPanel.Height;
@@ -83,6 +88,24 @@ namespace WarehouseShuttle
             Shuttle.Position = new StoragePoint3D(1, 1, 1, initialPoint);
         }
 
+        private void HandleView(UserRole userRole)
+        {
+            switch (userRole)
+            {
+                case UserRole.Admin:
+                    DrawGroup.Visible = true;
+                    break;
+                case UserRole.Customer:
+                    DrawGroup.Visible = false;
+                    CommonGroup.Location = DrawGroup.Location;
+                    this.Width = CommonGroup.Width + 100;
+                    break;
+                default:
+                    DrawGroup.Visible = true;
+                    break;
+            }
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
@@ -100,19 +123,19 @@ namespace WarehouseShuttle
             int speed = 10;
 
             if (radioButton1.Checked)
-                speed = int.Parse(radioButton1.Text);
+                speed = 50;
 
             if (radioButton2.Checked)
-                speed = int.Parse(radioButton2.Text);
+                speed = 40;
 
             if (radioButton3.Checked)
-                speed = int.Parse(radioButton3.Text);
+                speed = 30;
 
             if (radioButton4.Checked)
-                speed = int.Parse(radioButton4.Text);
+                speed = 20;
 
             if (radioButton5.Checked)
-                speed = int.Parse(radioButton5.Text);
+                speed = 10; ;
 
             // MOVE IN Y
             for (int pixel = Shuttle.Position.CenterPointOnPlane.Y; pixel >= moveTo.CenterPointOnPlane.Y + StorageCell.Height; pixel -= offset)
@@ -233,7 +256,7 @@ namespace WarehouseShuttle
             Graphics graphicsObj = DrawPanel.CreateGraphics();
             graphicsObj.Clear(Color.White);
             var blackPen = new Pen(Color.Black, 1);
-            var redPen = new Pen(Color.Red, 1); 
+            var redPen = new Pen(Color.Red, 1);
             var orange = new SolidBrush(Color.Orange);
 
             var endCell = floor * (NUMBER_OF_CELLS_ON_EACH_SIDE_HORIZONTAL * 2);
@@ -281,7 +304,7 @@ namespace WarehouseShuttle
                 {
                     return _storageCells.ElementAt(i).Number;
                 }
-                
+
                 if (i == (NUMBER_OF_CELLS_ON_EACH_SIDE_HORIZONTAL * 2) * (floorCount - 1))
                 {
                     floorCount++;
@@ -328,6 +351,9 @@ namespace WarehouseShuttle
                 SoftDeleted = false
             };
 
+            if (_currentRole is UserRole.Customer)
+                NotifyUserAboutPackageIsOnTheWay();
+
             var indexToStore = _storageCells.FindIndex(p => p.Number == storageCellNumber.Value);
             DrawShuttleMoving(_storageCells.FirstOrDefault(c => c.Number == storageCellNumber).Location, indexToStore, true);
 
@@ -335,10 +361,31 @@ namespace WarehouseShuttle
 
             _storeRepository.StorePackageToDB(packageToStore);
 
+            if (_currentRole is UserRole.Customer)
+                UnNotifyUserAboutPackageIsOnTheWay();
+
             MessageBox.Show($"Your PIN: \"{PIN}\", Your password: \"{password}\", please, keep it in a safe place. It is on the {floor} floor.");
             ClearAllInputsInGroup(StorePackage);
             TestShuttleButton.Text = $"Last floor: {floor}";
         }
+
+        private void UnNotifyUserAboutPackageIsOnTheWay()
+        {
+            this.CreateGraphics().Clear(this.BackColor);
+        }
+
+        private void NotifyUserAboutPackageIsOnTheWay()
+        {
+            StringFormat sf = new StringFormat
+            {
+                FormatFlags = StringFormatFlags.DirectionRightToLeft,
+            };
+            Font font = new Font(Font.Name, 20.0F, FontStyle.Bold);
+            this.CreateGraphics().DrawString("Your package is on the way, please wait!", font, new SolidBrush(Color.Black), new Point(this.Width - 250,
+                this.Height - 270), sf);
+        }
+
+
 
         private void UnstorePackageButton_Click(object sender, EventArgs e)
         {
@@ -386,7 +433,7 @@ namespace WarehouseShuttle
 
         private void ShowPackagesButton_Click(object sender, EventArgs e)
         {
-            var packages = _storeRepository.GetActualPackages();
+            var packages = _storeRepository.GetAllPackages();
             PackageList packageList = new PackageList(packages);
             packageList.ShowDialog();
         }
@@ -395,7 +442,7 @@ namespace WarehouseShuttle
         {
             if (string.IsNullOrWhiteSpace(TestInput.Text))
                 TestInput.Text = MAX_NUMBER_OF_STORAGE_CELLS.ToString();
-            
+
             for (int i = 0; i < int.Parse(TestInput.Text); i++)
             {
                 MassInput.Text = "80";
@@ -536,6 +583,19 @@ namespace WarehouseShuttle
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void DrawGroup_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            var auth = new Auth(new InMemoryUserRepository());
+            auth.ShowDialog();
+            this.Dispose();
         }
     }
 }

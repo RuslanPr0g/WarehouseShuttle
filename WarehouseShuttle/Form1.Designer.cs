@@ -57,21 +57,27 @@ namespace WarehouseShuttle
             this.TestShuttleButton = new System.Windows.Forms.Button();
             this.TestInput = new System.Windows.Forms.TextBox();
             this.ClearAllButton = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.radioButton4 = new System.Windows.Forms.RadioButton();
             this.radioButton5 = new System.Windows.Forms.RadioButton();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.DrawGroup = new System.Windows.Forms.GroupBox();
+            this.CommonGroup = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.StorePackage.SuspendLayout();
             this.UnStoreGroup.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.DrawGroup.SuspendLayout();
+            this.CommonGroup.SuspendLayout();
             this.SuspendLayout();
             // 
             // DrawPanel
             // 
             this.DrawPanel.BackColor = System.Drawing.Color.White;
             this.DrawPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.DrawPanel.Location = new System.Drawing.Point(12, 60);
+            this.DrawPanel.Location = new System.Drawing.Point(26, 71);
             this.DrawPanel.Name = "DrawPanel";
             this.DrawPanel.Size = new System.Drawing.Size(676, 653);
             this.DrawPanel.TabIndex = 0;
@@ -89,7 +95,7 @@ namespace WarehouseShuttle
             this.StorePackage.Controls.Add(this.OwnerText);
             this.StorePackage.Controls.Add(this.MassInput);
             this.StorePackage.Controls.Add(this.MassText);
-            this.StorePackage.Location = new System.Drawing.Point(727, 12);
+            this.StorePackage.Location = new System.Drawing.Point(22, 31);
             this.StorePackage.Name = "StorePackage";
             this.StorePackage.Size = new System.Drawing.Size(338, 555);
             this.StorePackage.TabIndex = 1;
@@ -198,7 +204,7 @@ namespace WarehouseShuttle
             this.UnStoreGroup.Controls.Add(this.UnstorePackage);
             this.UnStoreGroup.Controls.Add(this.UnStorePinInput);
             this.UnStoreGroup.Controls.Add(this.PIN);
-            this.UnStoreGroup.Location = new System.Drawing.Point(1089, 22);
+            this.UnStoreGroup.Location = new System.Drawing.Point(384, 41);
             this.UnStoreGroup.Name = "UnStoreGroup";
             this.UnStoreGroup.Size = new System.Drawing.Size(252, 202);
             this.UnStoreGroup.TabIndex = 12;
@@ -275,7 +281,7 @@ namespace WarehouseShuttle
             this.ShowPackagesButton.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.ShowPackagesButton.FlatAppearance.BorderSize = 5;
             this.ShowPackagesButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.ShowPackagesButton.Location = new System.Drawing.Point(798, 632);
+            this.ShowPackagesButton.Location = new System.Drawing.Point(411, 262);
             this.ShowPackagesButton.Name = "ShowPackagesButton";
             this.ShowPackagesButton.Size = new System.Drawing.Size(201, 38);
             this.ShowPackagesButton.TabIndex = 16;
@@ -286,7 +292,7 @@ namespace WarehouseShuttle
             // FloorText
             // 
             this.FloorText.AutoSize = true;
-            this.FloorText.Location = new System.Drawing.Point(12, 22);
+            this.FloorText.Location = new System.Drawing.Point(26, 33);
             this.FloorText.Name = "FloorText";
             this.FloorText.Size = new System.Drawing.Size(46, 13);
             this.FloorText.TabIndex = 19;
@@ -294,7 +300,7 @@ namespace WarehouseShuttle
             // 
             // ShowFloorInput
             // 
-            this.ShowFloorInput.Location = new System.Drawing.Point(81, 19);
+            this.ShowFloorInput.Location = new System.Drawing.Point(95, 30);
             this.ShowFloorInput.Name = "ShowFloorInput";
             this.ShowFloorInput.Size = new System.Drawing.Size(100, 22);
             this.ShowFloorInput.TabIndex = 19;
@@ -306,7 +312,7 @@ namespace WarehouseShuttle
             this.ShowFloor.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.ShowFloor.FlatAppearance.BorderSize = 5;
             this.ShowFloor.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.ShowFloor.Location = new System.Drawing.Point(187, 9);
+            this.ShowFloor.Location = new System.Drawing.Point(201, 20);
             this.ShowFloor.Name = "ShowFloor";
             this.ShowFloor.Size = new System.Drawing.Size(164, 38);
             this.ShowFloor.TabIndex = 19;
@@ -321,9 +327,9 @@ namespace WarehouseShuttle
             this.TestShuttleButton.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.TestShuttleButton.FlatAppearance.BorderSize = 5;
             this.TestShuttleButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.TestShuttleButton.Location = new System.Drawing.Point(1074, 300);
+            this.TestShuttleButton.Location = new System.Drawing.Point(708, 655);
             this.TestShuttleButton.Name = "TestShuttleButton";
-            this.TestShuttleButton.Size = new System.Drawing.Size(267, 66);
+            this.TestShuttleButton.Size = new System.Drawing.Size(100, 66);
             this.TestShuttleButton.TabIndex = 20;
             this.TestShuttleButton.Text = "Test the shuttle";
             this.TestShuttleButton.UseVisualStyleBackColor = false;
@@ -331,7 +337,7 @@ namespace WarehouseShuttle
             // 
             // TestInput
             // 
-            this.TestInput.Location = new System.Drawing.Point(1089, 272);
+            this.TestInput.Location = new System.Drawing.Point(708, 627);
             this.TestInput.Name = "TestInput";
             this.TestInput.Size = new System.Drawing.Size(100, 22);
             this.TestInput.TabIndex = 19;
@@ -344,7 +350,7 @@ namespace WarehouseShuttle
             this.ClearAllButton.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.ClearAllButton.FlatAppearance.BorderSize = 5;
             this.ClearAllButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.ClearAllButton.Location = new System.Drawing.Point(1161, 675);
+            this.ClearAllButton.Location = new System.Drawing.Point(501, 25);
             this.ClearAllButton.Name = "ClearAllButton";
             this.ClearAllButton.Size = new System.Drawing.Size(201, 38);
             this.ClearAllButton.TabIndex = 21;
@@ -352,35 +358,26 @@ namespace WarehouseShuttle
             this.ClearAllButton.UseVisualStyleBackColor = false;
             this.ClearAllButton.Click += new System.EventHandler(this.ClearAllButton_Click);
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(1102, 529);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(39, 13);
-            this.label3.TabIndex = 19;
-            this.label3.Text = "Speed";
-            // 
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(1105, 560);
+            this.radioButton1.Location = new System.Drawing.Point(10, 21);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(37, 17);
+            this.radioButton1.Size = new System.Drawing.Size(66, 17);
             this.radioButton1.TabIndex = 22;
             this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "50";
+            this.radioButton1.Text = "10 km/h";
             this.radioButton1.UseVisualStyleBackColor = true;
             // 
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(1152, 560);
+            this.radioButton2.Location = new System.Drawing.Point(10, 44);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(37, 17);
+            this.radioButton2.Size = new System.Drawing.Size(66, 17);
             this.radioButton2.TabIndex = 23;
             this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "40";
+            this.radioButton2.Text = "20 km/h";
             this.radioButton2.UseVisualStyleBackColor = true;
             this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
             // 
@@ -388,57 +385,103 @@ namespace WarehouseShuttle
             // 
             this.radioButton3.AutoSize = true;
             this.radioButton3.Checked = true;
-            this.radioButton3.Location = new System.Drawing.Point(1195, 560);
+            this.radioButton3.Location = new System.Drawing.Point(10, 70);
             this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(37, 17);
+            this.radioButton3.Size = new System.Drawing.Size(66, 17);
             this.radioButton3.TabIndex = 24;
             this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "30";
+            this.radioButton3.Text = "30 km/h";
             this.radioButton3.UseVisualStyleBackColor = true;
             // 
             // radioButton4
             // 
             this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(1238, 560);
+            this.radioButton4.Location = new System.Drawing.Point(10, 93);
             this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(37, 17);
+            this.radioButton4.Size = new System.Drawing.Size(66, 17);
             this.radioButton4.TabIndex = 25;
             this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "20";
+            this.radioButton4.Text = "40 km/h";
             this.radioButton4.UseVisualStyleBackColor = true;
             // 
             // radioButton5
             // 
             this.radioButton5.AutoSize = true;
-            this.radioButton5.Location = new System.Drawing.Point(1281, 560);
+            this.radioButton5.Location = new System.Drawing.Point(10, 116);
             this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size(37, 17);
+            this.radioButton5.Size = new System.Drawing.Size(66, 17);
             this.radioButton5.TabIndex = 26;
             this.radioButton5.TabStop = true;
-            this.radioButton5.Text = "10";
+            this.radioButton5.Text = "50 km/h";
             this.radioButton5.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.radioButton2);
+            this.groupBox1.Controls.Add(this.radioButton5);
+            this.groupBox1.Controls.Add(this.radioButton1);
+            this.groupBox1.Controls.Add(this.radioButton4);
+            this.groupBox1.Controls.Add(this.radioButton3);
+            this.groupBox1.Location = new System.Drawing.Point(708, 403);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(100, 193);
+            this.groupBox1.TabIndex = 27;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Speed";
+            // 
+            // DrawGroup
+            // 
+            this.DrawGroup.Controls.Add(this.DrawPanel);
+            this.DrawGroup.Controls.Add(this.FloorText);
+            this.DrawGroup.Controls.Add(this.groupBox1);
+            this.DrawGroup.Controls.Add(this.ShowFloorInput);
+            this.DrawGroup.Controls.Add(this.TestInput);
+            this.DrawGroup.Controls.Add(this.ClearAllButton);
+            this.DrawGroup.Controls.Add(this.TestShuttleButton);
+            this.DrawGroup.Controls.Add(this.ShowFloor);
+            this.DrawGroup.Location = new System.Drawing.Point(12, 12);
+            this.DrawGroup.Name = "DrawGroup";
+            this.DrawGroup.Size = new System.Drawing.Size(837, 754);
+            this.DrawGroup.TabIndex = 29;
+            this.DrawGroup.TabStop = false;
+            this.DrawGroup.Text = "AdminPanel";
+            this.DrawGroup.Enter += new System.EventHandler(this.DrawGroup_Enter);
+            // 
+            // CommonGroup
+            // 
+            this.CommonGroup.Controls.Add(this.button1);
+            this.CommonGroup.Controls.Add(this.StorePackage);
+            this.CommonGroup.Controls.Add(this.UnStoreGroup);
+            this.CommonGroup.Controls.Add(this.ShowPackagesButton);
+            this.CommonGroup.Location = new System.Drawing.Point(871, 22);
+            this.CommonGroup.Name = "CommonGroup";
+            this.CommonGroup.Size = new System.Drawing.Size(684, 744);
+            this.CommonGroup.TabIndex = 30;
+            this.CommonGroup.TabStop = false;
+            this.CommonGroup.Text = "Shuttling";
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Transparent;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.button1.FlatAppearance.BorderSize = 5;
+            this.button1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button1.Location = new System.Drawing.Point(501, 688);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(164, 38);
+            this.button1.TabIndex = 19;
+            this.button1.Text = "Log out";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // MainFormScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1367, 725);
-            this.Controls.Add(this.radioButton5);
-            this.Controls.Add(this.radioButton4);
-            this.Controls.Add(this.radioButton3);
-            this.Controls.Add(this.radioButton2);
-            this.Controls.Add(this.radioButton1);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.ClearAllButton);
-            this.Controls.Add(this.TestInput);
-            this.Controls.Add(this.TestShuttleButton);
-            this.Controls.Add(this.ShowFloor);
-            this.Controls.Add(this.ShowFloorInput);
-            this.Controls.Add(this.FloorText);
-            this.Controls.Add(this.ShowPackagesButton);
-            this.Controls.Add(this.UnStoreGroup);
-            this.Controls.Add(this.StorePackage);
-            this.Controls.Add(this.DrawPanel);
+            this.ClientSize = new System.Drawing.Size(1706, 771);
+            this.Controls.Add(this.CommonGroup);
+            this.Controls.Add(this.DrawGroup);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "MainFormScreen";
             this.Text = "WarehouseShuttle";
@@ -447,8 +490,12 @@ namespace WarehouseShuttle
             this.StorePackage.PerformLayout();
             this.UnStoreGroup.ResumeLayout(false);
             this.UnStoreGroup.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.DrawGroup.ResumeLayout(false);
+            this.DrawGroup.PerformLayout();
+            this.CommonGroup.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -482,12 +529,15 @@ namespace WarehouseShuttle
         private System.Windows.Forms.Button TestShuttleButton;
         private System.Windows.Forms.TextBox TestInput;
         private System.Windows.Forms.Button ClearAllButton;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton3;
         private System.Windows.Forms.RadioButton radioButton4;
         private System.Windows.Forms.RadioButton radioButton5;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox DrawGroup;
+        private System.Windows.Forms.GroupBox CommonGroup;
+        private System.Windows.Forms.Button button1;
     }
 }
 

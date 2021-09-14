@@ -49,8 +49,12 @@ namespace WarehouseShuttle
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.CustomerRadio = new System.Windows.Forms.RadioButton();
+            this.AdminRadio = new System.Windows.Forms.RadioButton();
             this.SignupRequirements.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // label14
@@ -271,11 +275,45 @@ namespace WarehouseShuttle
             this.textBox2.Size = new System.Drawing.Size(328, 26);
             this.textBox2.TabIndex = 6;
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.CustomerRadio);
+            this.groupBox2.Controls.Add(this.AdminRadio);
+            this.groupBox2.Location = new System.Drawing.Point(659, 432);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(200, 58);
+            this.groupBox2.TabIndex = 29;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "I am a";
+            // 
+            // CustomerRadio
+            // 
+            this.CustomerRadio.AutoSize = true;
+            this.CustomerRadio.Location = new System.Drawing.Point(100, 21);
+            this.CustomerRadio.Name = "CustomerRadio";
+            this.CustomerRadio.Size = new System.Drawing.Size(82, 21);
+            this.CustomerRadio.TabIndex = 28;
+            this.CustomerRadio.Text = "Customer";
+            this.CustomerRadio.UseVisualStyleBackColor = true;
+            // 
+            // AdminRadio
+            // 
+            this.AdminRadio.AutoSize = true;
+            this.AdminRadio.Checked = true;
+            this.AdminRadio.Location = new System.Drawing.Point(15, 21);
+            this.AdminRadio.Name = "AdminRadio";
+            this.AdminRadio.Size = new System.Drawing.Size(63, 21);
+            this.AdminRadio.TabIndex = 27;
+            this.AdminRadio.TabStop = true;
+            this.AdminRadio.Text = "Admin";
+            this.AdminRadio.UseVisualStyleBackColor = true;
+            // 
             // Auth
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1052, 673);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.SignupRequirements);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -287,6 +325,8 @@ namespace WarehouseShuttle
             this.SignupRequirements.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -313,5 +353,8 @@ namespace WarehouseShuttle
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.RadioButton CustomerRadio;
+        private System.Windows.Forms.RadioButton AdminRadio;
     }
 }
