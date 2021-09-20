@@ -28,14 +28,14 @@ namespace WarehouseShuttle
 
         private static readonly Random rndSeed = new Random();
 
-        private readonly UserRole _currentRole;
+        public UserRole CurrentRole { get; set; }
 
         public MainFormScreen(IStoreRepository storeRepository, UserRole userRole)
         {
             InitializeComponent();
             _storeRepository = storeRepository;
 
-            _currentRole = userRole;
+            CurrentRole = userRole;
             HandleView(userRole);
 
             int width = DrawPanel.Width;
@@ -351,7 +351,7 @@ namespace WarehouseShuttle
                 SoftDeleted = false
             };
 
-            if (_currentRole is UserRole.Customer)
+            if (CurrentRole is UserRole.Customer)
                 NotifyUserAboutPackageIsOnTheWay();
 
             var indexToStore = _storageCells.FindIndex(p => p.Number == storageCellNumber.Value);
@@ -361,12 +361,14 @@ namespace WarehouseShuttle
 
             _storeRepository.StorePackageToDB(packageToStore);
 
-            if (_currentRole is UserRole.Customer)
+            if (CurrentRole is UserRole.Customer)
                 UnNotifyUserAboutPackageIsOnTheWay();
 
             MessageBox.Show($"Your PIN: \"{PIN}\", Your password: \"{password}\", please, keep it in a safe place. It is on the {floor} floor.");
             ClearAllInputsInGroup(StorePackage);
             TestShuttleButton.Text = $"Last floor: {floor}";
+
+            TotalPackagesBox.Text = _storeRepository.GetActualPackages().Count.ToString();
         }
 
         private void UnNotifyUserAboutPackageIsOnTheWay()
@@ -429,6 +431,8 @@ namespace WarehouseShuttle
 
             MessageBox.Show(info.ToString());
             ClearAllInputsInGroup(UnStoreGroup);
+
+            TotalPackagesBox.Text = _storeRepository.GetActualPackages().Count.ToString();
         }
 
         private void ShowPackagesButton_Click(object sender, EventArgs e)
@@ -596,6 +600,30 @@ namespace WarehouseShuttle
             var auth = new Auth(new InMemoryUserRepository());
             auth.ShowDialog();
             this.Dispose();
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TotalPackagesBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var info = new StringBuilder();
+
+            var earned = _storeRepository.GetAllPackages().Where(p => p.EndDate <= DateTime.Parse("03/08/2021") && p.SoftDeleted is true);
+
+            foreach (var ern in earned)
+            {
+                info.AppendLine(ern.PackageInternationalNumber);
+            }
+
+            MessageBox.Show(info.ToString());
         }
     }
 }

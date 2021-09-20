@@ -11,6 +11,7 @@ namespace WarehouseShuttle
     {
         private readonly IUserRepository _userRepository;
         private readonly AuthHandler AH;
+        private MainFormScreen SP;
         private bool _LOGINMODE = true;
 
         public Auth(IUserRepository userRepository)
@@ -18,6 +19,7 @@ namespace WarehouseShuttle
             InitializeComponent();
             _userRepository = userRepository;
             AH = new AuthHandler(_userRepository);
+            SP = new MainFormScreen(new InMemoryStoreRepository(), UserRole.Admin);
         }
 
         private void Auth_Load(object sender, EventArgs e)
@@ -158,12 +160,8 @@ namespace WarehouseShuttle
                     {
                         Administrator s = _userRepository.GetUsers().FirstOrDefault(u => u.Username == user.Username);
 
-                        var userRole = UserRole.Customer;
-
-                        if (AdminRadio.Checked)
-                            userRole = UserRole.Admin;
-
-                        MainFormScreen SP = new MainFormScreen(new InMemoryStoreRepository(), userRole);
+                        if (AdminRadio.Checked is false)
+                            SP.CurrentRole = UserRole.Customer;
 
                         Hide();
                         SP.ShowDialog();

@@ -66,6 +66,9 @@ namespace WarehouseShuttle
             this.DrawGroup = new System.Windows.Forms.GroupBox();
             this.CommonGroup = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.TotalPackagesBox = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             this.StorePackage.SuspendLayout();
             this.UnStoreGroup.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -431,6 +434,8 @@ namespace WarehouseShuttle
             // 
             // DrawGroup
             // 
+            this.DrawGroup.Controls.Add(this.TotalPackagesBox);
+            this.DrawGroup.Controls.Add(this.label3);
             this.DrawGroup.Controls.Add(this.DrawPanel);
             this.DrawGroup.Controls.Add(this.FloorText);
             this.DrawGroup.Controls.Add(this.groupBox1);
@@ -449,6 +454,7 @@ namespace WarehouseShuttle
             // 
             // CommonGroup
             // 
+            this.CommonGroup.Controls.Add(this.button2);
             this.CommonGroup.Controls.Add(this.button1);
             this.CommonGroup.Controls.Add(this.StorePackage);
             this.CommonGroup.Controls.Add(this.UnStoreGroup);
@@ -474,6 +480,40 @@ namespace WarehouseShuttle
             this.button1.Text = "Log out";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // TotalPackagesBox
+            // 
+            this.TotalPackagesBox.Location = new System.Drawing.Point(718, 89);
+            this.TotalPackagesBox.Name = "TotalPackagesBox";
+            this.TotalPackagesBox.ReadOnly = true;
+            this.TotalPackagesBox.Size = new System.Drawing.Size(100, 22);
+            this.TotalPackagesBox.TabIndex = 20;
+            this.TotalPackagesBox.TextChanged += new System.EventHandler(this.TotalPackagesBox_TextChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(715, 73);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(86, 13);
+            this.label3.TabIndex = 19;
+            this.label3.Text = "Total packages:";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.Transparent;
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.button2.FlatAppearance.BorderSize = 5;
+            this.button2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button2.Location = new System.Drawing.Point(411, 306);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(201, 38);
+            this.button2.TabIndex = 20;
+            this.button2.Text = "Generate report";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // MainFormScreen
             // 
@@ -538,6 +578,9 @@ namespace WarehouseShuttle
         private System.Windows.Forms.GroupBox DrawGroup;
         private System.Windows.Forms.GroupBox CommonGroup;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox TotalPackagesBox;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button button2;
     }
 }
 
