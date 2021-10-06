@@ -86,6 +86,8 @@ namespace WarehouseShuttle
                 (SPACE_BETWEEN_TWO_SIDES) + (StorageCell.Width * 3), height - Shuttle.Height * 2);
             INITIAL_POINT = initialPoint;
             Shuttle.Position = new StoragePoint3D(1, 1, 1, initialPoint);
+
+            TotalPackagesBox.Text = _storeRepository.GetActualPackages().Count.ToString();
         }
 
         private void HandleView(UserRole userRole)
@@ -616,12 +618,15 @@ namespace WarehouseShuttle
         {
             var info = new StringBuilder();
 
-            var earned = _storeRepository.GetAllPackages().Where(p => p.EndDate <= DateTime.Parse("03/08/2021") && p.SoftDeleted is true);
+            var processedPackagesWithinCurrentMonth =
+                _storeRepository.GetAllPackages().Where(p => 
+                    p.EndDate <= DateTime.Now &&
+                    p.EndDate >= DateTime.Now.AddMonths(-1) &&
+                    p.SoftDeleted is true);
 
-            foreach (var ern in earned)
-            {
-                info.AppendLine(ern.PackageInternationalNumber);
-            }
+            info.AppendLine($"Processed packages within the last month:");
+            info.AppendLine($"Quantity of packages: {processedPackagesWithinCurrentMonth.Count()}");
+            info.AppendLine($"Quantity of money generated: {processedPackagesWithinCurrentMonth.Sum(p => p.Price)}");
 
             MessageBox.Show(info.ToString());
         }

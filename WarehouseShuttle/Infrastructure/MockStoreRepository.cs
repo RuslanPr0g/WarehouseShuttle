@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using WarehouseShuttle.Models;
 
@@ -52,6 +53,7 @@ namespace WarehouseShuttle.Infrastructure
         public void UnStorePackageInDB(int packageNumber)
         {
             var indexToUnStore = Packages.FindIndex(p => p.Number == packageNumber);
+            Packages[indexToUnStore].EndDate = DateTime.Now;
             Packages[indexToUnStore].SoftDeleted = true;
         }
 
