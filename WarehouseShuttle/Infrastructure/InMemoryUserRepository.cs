@@ -8,15 +8,15 @@ namespace WarehouseShuttle.Infrastructure
     {
         private readonly FileAccess fileAccess = new FileAccess();
 
-        public List<Administrator> Users { get; set; }
+        public List<User> Users { get; set; }
 
-        public void AddUser(Administrator user)
+        public void AddUser(User user)
         {
             Users.Add(user);
             fileAccess.ReWriteUsersToFile(Users);
         }
 
-        public List<Administrator> GetUsers()
+        public List<User> GetUsers()
         {
             Users = fileAccess.ReadUsersFromFile();
             return Users;

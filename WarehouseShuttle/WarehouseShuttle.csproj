@@ -95,7 +95,7 @@
     <Compile Include="Infrastructure\IUserRepository.cs" />
     <Compile Include="Infrastructure\MockStoreRepository.cs" />
     <Compile Include="Models\3DStoragePoint.cs" />
-    <Compile Include="Models\Administrator.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Models\DTO\StorePackageReadDto.cs" />
     <Compile Include="Models\DTO\UnStorePackageReadDto.cs" />
     <Compile Include="Models\Package.cs" />

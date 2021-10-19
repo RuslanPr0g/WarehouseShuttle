@@ -10,7 +10,7 @@ namespace WarehouseShuttle.Infrastructure
         private const string packages = "packages.bin";
         private const string users = "users.bin";
 
-        public void ReWriteUsersToFile(List<Administrator> users)
+        public void ReWriteUsersToFile(List<User> users)
         {
             FileStream fs;
             BinaryWriter bw;
@@ -43,9 +43,9 @@ namespace WarehouseShuttle.Infrastructure
             fs.Close();
         }
 
-        public List<Administrator> ReadUsersFromFile()
+        public List<User> ReadUsersFromFile()
         {
-            List<Administrator> users = new List<Administrator>();
+            List<User> users = new List<User>();
 
             FileStream fs;
             BinaryReader br;
@@ -74,7 +74,7 @@ namespace WarehouseShuttle.Infrastructure
                         Username = br.ReadString();
                         Password = br.ReadString();
 
-                        users.Add(new Administrator()
+                        users.Add(new User()
                         {
                             Id = Id,
                             Username = Username,

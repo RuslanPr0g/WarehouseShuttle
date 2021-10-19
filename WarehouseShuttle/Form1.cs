@@ -28,17 +28,15 @@ namespace WarehouseShuttle
 
         private static readonly Random rndSeed = new Random();
 
-        public UserRole CurrentRole { get; set; }
+        public User CurrentUser { get; set; }
 
-        public MainFormScreen(IStoreRepository storeRepository, UserRole userRole)
+        public MainFormScreen(IStoreRepository storeRepository, User user)
         {
             InitializeComponent();
             _storeRepository = storeRepository;
 
-            CurrentRole = userRole;
-            HandleView(userRole);
+            CurrentUser = user;
 
-            int width = DrawPanel.Width;
             int height = DrawPanel.Height;
 
             int floorCount = 1;
@@ -96,14 +94,24 @@ namespace WarehouseShuttle
             {
                 case UserRole.Admin:
                     DrawGroup.Visible = true;
+                    generateReportButton.Visible = true;
+                    showPackagesButton.Visible = true;
+                    myOrdersButton.Visible = false;
                     break;
                 case UserRole.Customer:
                     DrawGroup.Visible = false;
                     CommonGroup.Location = DrawGroup.Location;
                     this.Width = CommonGroup.Width + 100;
+
+                    generateReportButton.Visible = false;
+                    showPackagesButton.Visible = false;
+                    myOrdersButton.Visible = true;
                     break;
                 default:
                     DrawGroup.Visible = true;
+                    generateReportButton.Visible = true;
+                    showPackagesButton.Visible = true;
+                    myOrdersButton.Visible = false;
                     break;
             }
         }
@@ -111,6 +119,7 @@ namespace WarehouseShuttle
         private void Form1_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
+            HandleView(CurrentUser.Role);
         }
 
         private void DrawShuttleMoving(StoragePoint3D moveTo, int cellIndex, bool store = true)
@@ -353,7 +362,7 @@ namespace WarehouseShuttle
                 SoftDeleted = false
             };
 
-            if (CurrentRole is UserRole.Customer)
+            if (CurrentUser.Role is UserRole.Customer)
                 NotifyUserAboutPackageIsOnTheWay();
 
             var indexToStore = _storageCells.FindIndex(p => p.Number == storageCellNumber.Value);
@@ -363,12 +372,11 @@ namespace WarehouseShuttle
 
             _storeRepository.StorePackageToDB(packageToStore);
 
-            if (CurrentRole is UserRole.Customer)
+            if (CurrentUser.Role is UserRole.Customer)
                 UnNotifyUserAboutPackageIsOnTheWay();
 
-            MessageBox.Show($"Your PIN: \"{PIN}\", Your password: \"{password}\", please, keep it in a safe place. It is on the {floor} floor.");
+            MessageBox.Show($"Your username: {packageToStore.Owner}, Your PIN: \"{PIN}\", Your password: \"{password}\", please, keep it in a safe place. It is on the {floor} floor.");
             ClearAllInputsInGroup(StorePackage);
-            TestShuttleButton.Text = $"Last floor: {floor}";
 
             TotalPackagesBox.Text = _storeRepository.GetActualPackages().Count.ToString();
         }
@@ -629,6 +637,13 @@ namespace WarehouseShuttle
             info.AppendLine($"Quantity of money generated: {processedPackagesWithinCurrentMonth.Sum(p => p.Price)}");
 
             MessageBox.Show(info.ToString());
+        }
+
+        private void myOrdersButton_Click(object sender, EventArgs e)
+        {
+            var packages = _storeRepository.GetAllPackages().Where(p => p.Owner == CurrentUser.Username).ToList();
+            PackageList packageList = new PackageList(packages);
+            packageList.ShowDialog();
         }
     }
 }

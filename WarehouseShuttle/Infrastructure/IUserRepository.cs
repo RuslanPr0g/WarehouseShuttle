@@ -9,13 +9,13 @@ namespace WarehouseShuttle.Infrastructure
         /// Adds a user to DB
         /// </summary>
         /// <param name="user">User to insert</param>
-        void AddUser(Administrator user);
+        void AddUser(User user);
 
         /// <summary>
         /// Gets all the users
         /// </summary>
         /// <returns>List of users</returns>
-        List<Administrator> GetUsers();
+        List<User> GetUsers();
 
         /// <summary>
         /// Gets the last user's number

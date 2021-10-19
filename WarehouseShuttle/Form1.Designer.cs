@@ -50,7 +50,7 @@ namespace WarehouseShuttle
             this.UnstorePackage = new System.Windows.Forms.Button();
             this.UnStorePinInput = new System.Windows.Forms.TextBox();
             this.PIN = new System.Windows.Forms.Label();
-            this.ShowPackagesButton = new System.Windows.Forms.Button();
+            this.showPackagesButton = new System.Windows.Forms.Button();
             this.FloorText = new System.Windows.Forms.Label();
             this.ShowFloorInput = new System.Windows.Forms.TextBox();
             this.ShowFloor = new System.Windows.Forms.Button();
@@ -64,11 +64,12 @@ namespace WarehouseShuttle
             this.radioButton5 = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.DrawGroup = new System.Windows.Forms.GroupBox();
-            this.CommonGroup = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.TotalPackagesBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.CommonGroup = new System.Windows.Forms.GroupBox();
+            this.myOrdersButton = new System.Windows.Forms.Button();
+            this.generateReportButton = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.StorePackage.SuspendLayout();
             this.UnStoreGroup.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -216,7 +217,7 @@ namespace WarehouseShuttle
             // 
             // UnStorePasswordInput
             // 
-            this.UnStorePasswordInput.Location = new System.Drawing.Point(128, 104);
+            this.UnStorePasswordInput.Location = new System.Drawing.Point(-281, 127);
             this.UnStorePasswordInput.Name = "UnStorePasswordInput";
             this.UnStorePasswordInput.Size = new System.Drawing.Size(100, 22);
             this.UnStorePasswordInput.TabIndex = 15;
@@ -277,20 +278,20 @@ namespace WarehouseShuttle
             this.PIN.TabIndex = 0;
             this.PIN.Text = "PIN (last 4 digits)";
             // 
-            // ShowPackagesButton
+            // showPackagesButton
             // 
-            this.ShowPackagesButton.BackColor = System.Drawing.Color.Transparent;
-            this.ShowPackagesButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ShowPackagesButton.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.ShowPackagesButton.FlatAppearance.BorderSize = 5;
-            this.ShowPackagesButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.ShowPackagesButton.Location = new System.Drawing.Point(411, 262);
-            this.ShowPackagesButton.Name = "ShowPackagesButton";
-            this.ShowPackagesButton.Size = new System.Drawing.Size(201, 38);
-            this.ShowPackagesButton.TabIndex = 16;
-            this.ShowPackagesButton.Text = "All packages";
-            this.ShowPackagesButton.UseVisualStyleBackColor = false;
-            this.ShowPackagesButton.Click += new System.EventHandler(this.ShowPackagesButton_Click);
+            this.showPackagesButton.BackColor = System.Drawing.Color.Transparent;
+            this.showPackagesButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.showPackagesButton.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.showPackagesButton.FlatAppearance.BorderSize = 5;
+            this.showPackagesButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.showPackagesButton.Location = new System.Drawing.Point(411, 262);
+            this.showPackagesButton.Name = "showPackagesButton";
+            this.showPackagesButton.Size = new System.Drawing.Size(201, 38);
+            this.showPackagesButton.TabIndex = 16;
+            this.showPackagesButton.Text = "All packages";
+            this.showPackagesButton.UseVisualStyleBackColor = false;
+            this.showPackagesButton.Click += new System.EventHandler(this.ShowPackagesButton_Click);
             // 
             // FloorText
             // 
@@ -452,35 +453,6 @@ namespace WarehouseShuttle
             this.DrawGroup.Text = "AdminPanel";
             this.DrawGroup.Enter += new System.EventHandler(this.DrawGroup_Enter);
             // 
-            // CommonGroup
-            // 
-            this.CommonGroup.Controls.Add(this.button2);
-            this.CommonGroup.Controls.Add(this.button1);
-            this.CommonGroup.Controls.Add(this.StorePackage);
-            this.CommonGroup.Controls.Add(this.UnStoreGroup);
-            this.CommonGroup.Controls.Add(this.ShowPackagesButton);
-            this.CommonGroup.Location = new System.Drawing.Point(871, 22);
-            this.CommonGroup.Name = "CommonGroup";
-            this.CommonGroup.Size = new System.Drawing.Size(684, 744);
-            this.CommonGroup.TabIndex = 30;
-            this.CommonGroup.TabStop = false;
-            this.CommonGroup.Text = "Shuttling";
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.Transparent;
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.button1.FlatAppearance.BorderSize = 5;
-            this.button1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button1.Location = new System.Drawing.Point(501, 688);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(164, 38);
-            this.button1.TabIndex = 19;
-            this.button1.Text = "Log out";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // TotalPackagesBox
             // 
             this.TotalPackagesBox.Location = new System.Drawing.Point(718, 89);
@@ -500,20 +472,65 @@ namespace WarehouseShuttle
             this.label3.Text = "Total packages:";
             this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
-            // button2
+            // CommonGroup
             // 
-            this.button2.BackColor = System.Drawing.Color.Transparent;
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.button2.FlatAppearance.BorderSize = 5;
-            this.button2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button2.Location = new System.Drawing.Point(411, 306);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(201, 38);
-            this.button2.TabIndex = 20;
-            this.button2.Text = "Generate report";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.CommonGroup.Controls.Add(this.myOrdersButton);
+            this.CommonGroup.Controls.Add(this.generateReportButton);
+            this.CommonGroup.Controls.Add(this.button1);
+            this.CommonGroup.Controls.Add(this.StorePackage);
+            this.CommonGroup.Controls.Add(this.UnStoreGroup);
+            this.CommonGroup.Controls.Add(this.showPackagesButton);
+            this.CommonGroup.Location = new System.Drawing.Point(871, 22);
+            this.CommonGroup.Name = "CommonGroup";
+            this.CommonGroup.Size = new System.Drawing.Size(684, 744);
+            this.CommonGroup.TabIndex = 30;
+            this.CommonGroup.TabStop = false;
+            this.CommonGroup.Text = "Shuttling";
+            // 
+            // myOrdersButton
+            // 
+            this.myOrdersButton.BackColor = System.Drawing.Color.Transparent;
+            this.myOrdersButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.myOrdersButton.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.myOrdersButton.FlatAppearance.BorderSize = 5;
+            this.myOrdersButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.myOrdersButton.Location = new System.Drawing.Point(411, 262);
+            this.myOrdersButton.Name = "myOrdersButton";
+            this.myOrdersButton.Size = new System.Drawing.Size(201, 38);
+            this.myOrdersButton.TabIndex = 21;
+            this.myOrdersButton.Text = "My orders";
+            this.myOrdersButton.UseVisualStyleBackColor = false;
+            this.myOrdersButton.Click += new System.EventHandler(this.myOrdersButton_Click);
+            // 
+            // generateReportButton
+            // 
+            this.generateReportButton.BackColor = System.Drawing.Color.Transparent;
+            this.generateReportButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.generateReportButton.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.generateReportButton.FlatAppearance.BorderSize = 5;
+            this.generateReportButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.generateReportButton.Location = new System.Drawing.Point(411, 306);
+            this.generateReportButton.Name = "generateReportButton";
+            this.generateReportButton.Size = new System.Drawing.Size(201, 38);
+            this.generateReportButton.TabIndex = 20;
+            this.generateReportButton.Text = "Generate report";
+            this.generateReportButton.UseVisualStyleBackColor = false;
+            this.generateReportButton.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Transparent;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.button1.FlatAppearance.BorderSize = 5;
+            this.button1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button1.Location = new System.Drawing.Point(501, 688);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(164, 38);
+            this.button1.TabIndex = 19;
+            this.button1.Text = "Log out";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // MainFormScreen
             // 
@@ -560,7 +577,7 @@ namespace WarehouseShuttle
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox UnStorePasswordInput;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button ShowPackagesButton;
+        private System.Windows.Forms.Button showPackagesButton;
         private System.Windows.Forms.MonthCalendar StartDateInput;
         private System.Windows.Forms.MonthCalendar EndDateInput;
         private System.Windows.Forms.Label FloorText;
@@ -580,7 +597,8 @@ namespace WarehouseShuttle
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox TotalPackagesBox;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button generateReportButton;
+        private System.Windows.Forms.Button myOrdersButton;
     }
 }
 

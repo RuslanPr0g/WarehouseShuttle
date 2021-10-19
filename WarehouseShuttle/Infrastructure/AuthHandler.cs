@@ -69,22 +69,22 @@ namespace WarehouseShuttle.Infrastructure
             return BCrypt.Net.BCrypt.Verify(password, hash);
         }
 
-        public void AddUser(Administrator user)
+        public void AddUser(User user)
         {
             user.Password = HashPassword(user.Password);
             _userRepository.AddUser(user);
         }
 
-        public bool UserExists(Administrator user)
+        public bool UserExists(User user)
         {
-            List<Administrator> users = _userRepository.GetUsers();
+            List<User> users = _userRepository.GetUsers();
 
             return users.Exists(u => u.Username == user.Username && VerityPassword(user.Password, u.Password));
         }
 
-        public string SignupRequirements(Administrator user, string passwordToConfirm)
+        public string SignupRequirements(User user, string passwordToConfirm)
         {
-            List<Administrator> users = _userRepository.GetUsers();
+            List<User> users = _userRepository.GetUsers();
 
             if (user.Username == string.Empty || user.Password == string.Empty)
             {
@@ -129,7 +129,7 @@ namespace WarehouseShuttle.Infrastructure
             return SUCCESS;
         }
 
-        public string SignUp(Administrator user, string passwordConfirm)
+        public string SignUp(User user, string passwordConfirm)
         {
             string requirements = this.SignupRequirements(user, passwordConfirm);
 
@@ -141,7 +141,7 @@ namespace WarehouseShuttle.Infrastructure
             return SUCCESS;
         }
 
-        public string LogIn(Administrator user)
+        public string LogIn(User user)
         {
             try
             {

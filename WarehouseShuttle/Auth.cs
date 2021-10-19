@@ -19,7 +19,13 @@ namespace WarehouseShuttle
             InitializeComponent();
             _userRepository = userRepository;
             AH = new AuthHandler(_userRepository);
-            SP = new MainFormScreen(new InMemoryStoreRepository(), UserRole.Admin);
+            SP = new MainFormScreen(new InMemoryStoreRepository(), new User
+            {
+                Id = default,
+                Username = default,
+                Password = default,
+                Role = UserRole.Admin
+            });
         }
 
         private void Auth_Load(object sender, EventArgs e)
@@ -133,7 +139,7 @@ namespace WarehouseShuttle
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var user = new Administrator
+            var user = new User
             {
                 Username = Username,
                 Password = Password
@@ -158,10 +164,16 @@ namespace WarehouseShuttle
 
                     if (result == "")
                     {
-                        Administrator s = _userRepository.GetUsers().FirstOrDefault(u => u.Username == user.Username);
+                        User s = _userRepository.GetUsers().FirstOrDefault(u => u.Username == user.Username);
 
                         if (AdminRadio.Checked is false)
-                            SP.CurrentRole = UserRole.Customer;
+                            SP.CurrentUser = new User
+                            {
+                                Id = user.Id,
+                                Username = user.Username,
+                                Password = string.Empty,
+                                Role = UserRole.Customer
+                            };
 
                         Hide();
                         SP.ShowDialog();

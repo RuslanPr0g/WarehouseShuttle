@@ -1,4 +1,4 @@
-﻿namespace WarehouseShuttle
+﻿namespace WarehouseShuttle.Models
 {
     public enum UserRole
     {
